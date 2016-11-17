@@ -8,13 +8,22 @@
   <title>Professional Resume</title>
 </head>
 <header>
-  <span class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Management: <input type="checkbox" ng-model="show_manage" name="manage"></span>
-  <span class=MsoNormal style='font-size:16.0pt;font-family:"Times New Roman"'>Backend: <input type="checkbox" ng-model="show_backend" name="backend"></span>
-  <span class=MsoNormal style='font-size:16.0pt;font-family:"Times New Roman"'>Real Time: <input type="checkbox" ng-model="show_realtime" name="realtime"></span>
-  <span class=MsoNormal style='font-size:16.0pt;font-family:"Times New Roman"'>Database: <input type="checkbox" ng-model="show_database" name="database"></span>
-  <span class=MsoNormal style='font-size:16.0pt;font-family:"Times New Roman"'>Database: <input type="checkbox" ng-model="show_database" name="database"></span>
-  <span style='font-size:16.0pt;font-family:"Times New Roman"'>Database: <input type="checkbox" ng-model="show_database" name="database"></span>
+  <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Management: <input type="checkbox" ng-model="show_manage" name="manage"></span>
+  <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Process: <input type="checkbox" ng-model="show_process" name="process"></span>
+  <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Operations: <input type="checkbox" ng-model="show_operations" name="operations"></span>
+  <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Training: <input type="checkbox" ng-model="show_training" name="training"></span>
+  <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Support: <input type="checkbox" ng-model="show_support" name="backend"></span>
+  <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Backend: <input type="checkbox" ng-model="show_backend" name="backend"></span>
+  <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Real Time: <input type="checkbox" ng-model="show_realtime" name="realtime"></span>
+  <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Database: <input type="checkbox" ng-model="show_database" name="database"></span>
   <h2 class=MsoTitle align=center style='font-size:24.0pt;font-family:"Arial Black";
 font-weight:normal'>David L. Dawes</h2>
   <h2 class=Address2 align=center style='margin-top:6.0pt;text-align:center'>18924 72<sup>nd</sup> Ct. NE</h2>
@@ -22,107 +31,158 @@ font-weight:normal'>David L. Dawes</h2>
   <h2 class=Address2 align=center style='margin-top:6.0pt;text-align:center'>(206)271-7382</h2>
   <h2 class=Address2 align=center style='margin-top:6.0pt;text-align:center'>davidlymandawes@yahoo.com</h2>
   </header>
-<p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'>
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt'>
 <body lang=EN-US link=blue vlink=purple>
- <scope ng-if="show_manage"><p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Building
-and leading teams that routinely deliver solutions for the biggest challenges
-is what drives me. The smallest latencies, the largest scales, the highest
-availability, the intricate complexity, the fastest and most reliable delivery,
-the difficult testing, the simplest UI. Running teams that do it and then do
-it even better is the best feeling around, I love getting up to go to work on
-getting even better.</span></p></scope>
+ <p class=MsoNormal ng-if="show_manage || show_process || show_operations || show_training || show_support"
+    style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>I love <span ng-if="show_manage">building
+  and </span>leading teams that routinely deliver solutions for the biggest challenges. The <span ng-if="show_realtime">tightest latencies,
+  the</span> largest scales, the highest availability,
+  <span ng-if="show_manage || show_backend || show_database || show_process || show_operations || show_support">
+    the largest customer base, the intricate complexity, </span>
+  <span ng-if="show_manage || show_backend || show_realtime || show_database || show_process || show_operations || show_support">
+    the fastest and most reliable delivery,</span>
+  the simplest and most usable UI,
+  <span ng-if="show_backend || show_realtime || show_database || show_process || show_operations || show_support">
+    the automated wide and deep testing from unit through CI, integration, acceptance, performance, scale, load</span>
+  <span ng-if="!(show_backend || show_realtime || show_database || show_process || show_operations || show_support)">
+    the automated</span> testing.
+  Running teams that do it and then do it even better is the best feeling around, I love getting up to go to work on
+getting even better, building and delivering more faster better.</span></p>
 
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Engineer/manager/director
-built and led teams that shipped dominant API driven network and web based
-products. </span></p>
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Engineer/manager/director
+built and led teams that
+    <span ng-if="(show_backend || show_database || show_process)">
+      defined,
+    </span>
+    <span ng-if="(show_backend || show_database || show_process || show_operations)">
+      built,
+    </span>
+      shipped and supported dominant
+    <span ng-if="(show_backend || show_database || show_process)">
+      API driven
+    </span>
+    <span ng-if="(show_backend || show_database || show_process || show_operations)">
+      multitier </span>
+    <span ng-if="(show_backend || show_database || show_operations || show_support)">
+      horizontally scalable </span>
+    network and web based products and services.</span></p>
 
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Hired,
+  <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+margin-left:0pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Hired,
 trained, and mentored teams from near startup (10 engineers, 1 product) to
-large (100+ engineers, 30+ products) divisions. My teams delivered mission
-critical applications to Fortune 500 firms, taking leading market share in several
-$50M+ markets with installed bases in the millions. Managed and promoted engineers
-and managers, fixed performance issues, rewarded and promoted engineers while
-keeping morale, productivity and quality high and turnover low. Built industry
-best support operations and achieved outstanding customer satisfaction.</span></p>
+large (100+ engineers, 30+ products) divisions.
+<span ng-if="show_manage "> My teams delivered mission critical applications to Fortune 500 firms, taking leading
+    market share in several $50M+ markets with installed bases in the millions: Attachmate's EXTRA!, Cisco's Unity
+    Connection and Media Sense. Managed and promoted engineers and managers, fixed performance issues, rewarded and
+    promoted engineers while keeping morale, productivity and quality high and turnover low. In-sourced and outsourced,
+    built and bought and acquired, the teams I manage deliver tech that works and sells and beats the competition.
+    At Attachmate and Cisco I delivered industry best support operations and achieved outstanding customer satisfaction
+    for decades.</span>
+<span ng-if="!show_manage ">
+    Delivered mission critical apps to Fortune 500 firms, dominating large fast growing markets.
+    Managed engineers and managers, keeping productivity and quality high and turnover low. Built industry
+    best support operations and achieved outstanding customer satisfaction.</span>
+</span></p>
 
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Defined
-release requirements with product management then recruited and led teams that
-delivered on these commitments and took market share from competitors in mature
-markets, capturing tens of millions of dollars in increased sales. Built
-continuous deployment pipelines with automated testing and automatic deployment
-to the cloud on AWS EC2 and Rackspace. Drove automated test improvements,
-increasing unit test coverage and improving test quality, automating end-to-end
-testing of web based UI components and deploying live integration test
-environments to improve back end component and system level testing, routinely
-catching defects within a few hours of code commit before they ever affect any
-customers. Automated latency and resource monitoring, enabling routine detection
-and correction of problems before customers get a chance to notice them.</span></p>
+<span ng-if="show_manage || show_process" style='font-size:16.0pt;font-family:"Times New Roman"'>
+    <p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;margin-left:0pt'>
+        Defined release requirements with product management then recruited and led teams that
+        delivered on these commitments, from real time robots seventies to 3270 and 5250 emulators incuding APIs
+        and multiuser database engine internals and network locking in the eighties, through servers, gateways
+        and multitier automation, management and provisioning systems in the nineties, fast install device
+         management and remote access for airline checkin counters and ssh clients this century, through real
+        time media recording and unified messaging systems from on-premise to virtual to in the cloud this
+        decade. They all share a history of success: market share captured, new markets created and dominated,
+        mature markets sewn up and maximized for minimal cost.</p>
+    <p>Saved costs in development using ever improving open source platforms, frameworks, product and tools.
+        Building with improving building blocks that get important features in performance, scale, redundancy and
+        security delivered for you at no cost, we continue to build more and better results faster with fewer issues
+        at ever improving scale and availability. We've consistently delivered more - scale, features, reliability,
+        multi-tenancy, transparency and monitoring, security, all improve rapidly together when we get it right
+        and I'm proiud to say I've built, led and managed many teams that did it right. The latest CI/CD tools,
+        container and container management systems, and cloud integration options, when used properly, give us
+        even finer control and flexibility in easy to manage and observe loosely coupled horizintally scalable
+        systems. Costs drop, reliability, capacity, quality and velocity improve as demonstrated repeatedly at
+        Cisco and Capital One Investing.</p>
+    <p>Continued delivering more sooner, more predictably and with fewer problems by improving processes, tech and
+        communications. Moved to agile approaches, going from months long chronically late delivery cycles to
+        demoing new features in hours and delivering them in days repeatedly and predistably using agile processes.
+        Better tools, instrumentation, automation and systems give us locally tested, tested-on-push, review gated
+        style checked static bug checked commit-tested automatically tested in both mocked and real world environments
+        pipelined through ever more elaborate and careful test processes getting continuous integration and testing
+        cycles into the minutes, and deployment cycles into the hours. Multiple deployments per day of live systems
+        with millions of users without any issues is now routine.</p></span>
+<span ng-if="!show_manage || show_process" style='font-size:16.0pt;font-family:"Times New Roman"'>
+    <p>Defined requirements and delivered on these commitments, taking market share from competitors in mature
+        markets, capturing tens of millions of dollars in increased sales. Built continuous deployment pipelines
+        with automated testing and automatic deployment to the cloud on AWS EC2 and Rackspace. Drove automated
+        test improvements, increasing unit test coverage and improving test quality, automating end-to-end
+        testing of web based UI components and deploying live integration test environments to improve back
+        end component and system level testing, routinely catching defects within a few hours of code commit
+        before they ever affect any customers. Automated latency and resource monitoring, enabling routine detection
+        and correction of problems before customers get a chance to notice them.</p></span>
+<span style='font-size:16.0pt;font-family:"Times New Roman"'><p class=MsoNormal
+    style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;margin-left:0pt'>Successfully designed, built, tested,
+    deployed and supported complex API driven network and web based products, advocating for and delivering
+    appropriate and innovative customer solutions to challenging real time multitier issues. Improved customer
+    satisfaction by training Cisco's industry leading TAC (support) teams on new products and features and answering
+    late night calls resolving critical customer issues. Provided public APIs and supported successful use by
+    customers.</p></span>
+<p ng-if="show_process" class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+    margin-left:0pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Revised
+    processes to achieve faster results with higher quality. Achieved outstanding
+    results using agile and waterfall, scrum, Kanban, and related techniques. Led ISO
+    certification, team and organizational growth, patents, intellectual property,
+    localization, licensing, certification and export/import compliance, as well as
+    successfully off-shoring and on-shoring products.</span></p>
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+    margin-left:0pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Architect
+    and Development Lead for multiple simultaneous releases of servers and clients.
+    Built ground breaking products with scalable distributed systems using SQL and NoSQL
+    database approaches including MongoDB and Cassandra. Built and continuously
+    deployed cutting edge real time media micro-services with scalable stateless
+    open stack components and design.</span></p>
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+    margin-left:0pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Achieved
+    and sustained 5 nines availability for industry leading messaging and media servers
+    with 10,000+ media users each. </span></p>
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+    margin-left:0pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Maintained
+    compliance with strict security and personally-identifiable-information
+    standards, passing Cisco's security reviews and scans before going live with
+    each product. </span></p>
 
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Successfully
-supported complex API driven network and web based products, advocating for and
-delivering appropriate and innovative customer solutions to challenging real
-time multitier issues. Improved customer satisfaction by training Cisco's
-industry leading TAC (support) teams on new products and features and answering
-late night calls resolving critical customer issues. Provided public APIs and
-supported their successful use by customers.</span></p>
-
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Revised
-processes to achieve faster results with higher quality. Achieved outstanding
-results using agile and waterfall, scrum, Kanban, and related techniques. Led ISO
-certification, team and organizational growth, patents, intellectual property,
-localization, licensing, certification and export/import compliance, as well as
-successfully off-shoring and on-shoring products.</span></p>
-
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Architect
-and Development Lead for multiple simultaneous releases of servers and clients.
-Built ground breaking products with scalable distributed systems using SQL and NoSQL
-database approaches including MongoDB and Cassandra. Built and continuously
-deployed cutting edge real time media micro-services with scalable stateless
-open stack components and design.</span></p>
-
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Achieved
-and sustained 5 nines availability for industry leading messaging and media servers
-with 10,000+ media users each. </span></p>
-
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Maintained
-compliance with strict security and personally-identifiable-information
-standards, passing Cisco's security reviews and scans before going live with
-each product. </span></p>
-
-  <p class=MsoNormal style='margin-top:0in;margin-right:.25in;margin-bottom:6.0pt;
-margin-left:7.9pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Managed
-patent research and applications in USA, Europe and Canada. Negotiated patent
-dispute with IBM, reducing cross-licensing fees by $19 million.</span></p>
-
-  <p class=MsoNormal style='margin-bottom:6.0pt;text-indent:.5in'><span
-          style='font-size:16.0pt;font-family:"Times New Roman"'>&nbsp;</span></p>
-  <p class=MsoNormal style='margin-bottom:6.0pt;text-indent:.5in'><span
+<p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+    margin-left:0pt'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Managed
+    patent research and applications in USA, Europe and Canada. Negotiated patent
+    dispute with IBM, reducing cross-licensing fees by $19 million.</span></p>
+<p class=MsoNormal style='margin-bottom:6.0pt;text-indent:.5in'></p>
+<p class=MsoNormal style='margin-bottom:6.0pt;text-indent:.5in'><span
           style='font-size:16.0pt'>Professional Experience:</span></p>
 
-  <p class=MsoNormal style='margin-bottom:6.0pt'><b><span style='font-size:
+<p class=MsoNormal style='margin-bottom:6.0pt'><b><span style='font-size:
   16.0pt;font-family:"Times New Roman"'>Manager, Software Engineering&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2016
   - present&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Capital
   One Investing</span></b></p><ul>
-  <li class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+    <li ng-if="show_manage" class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
   margin-left:0in;font-size:16.0pt;font-family:"Times New Roman"'>
-    Manage two engineering teams operating, supporting and enhancing Capital One
-    Investing web site. Plan and implement restructuring of teams and lead
-    efforts to comply with security and privacy requirements, remediating and
-    securing application handling of non-public information (NPI, also call
-    personally identifiable information or PII) and applying modern basic
-    security (i.e. using SSL and client authentication for all database access
-    and APIs, scrubbing NPI from logs, requesting and passing formal reviews and
-    audits around security, privacy and processes).</li>
+        Manage two engineering teams operating, supporting and enhancing Capital One
+        Investing web site. Plan and implement restructuring of teams and lead
+        efforts to comply with security and privacy requirements, remediating and
+        securing application handling of non-public information (NPI, also call
+        personally identifiable information or PII) and applying modern basic
+        security (i.e. using SSL and client authentication for all database access
+        and APIs, scrubbing NPI from logs, requesting and passing formal reviews and
+        audits around security, privacy and processes).</li>
+    <li ng-if="!show_manage" class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
+  margin-left:0in;font-size:16.0pt;font-family:"Times New Roman"'>
+        Manage two engineering teams operating, supporting and enhancing Capital One
+        Investing web site. Restructure and comply with security and privacy requirements, remediating and
+        securing applications, requesting and passing formal reviews and
+        audits around security, privacy and processes).</li>
   <li class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
   margin-left:0in;font-size:16.0pt;font-family:"Times New Roman"'>Led
     team that delivered micro-service based quote service running on AWS,
@@ -276,7 +336,7 @@ dispute with IBM, reducing cross-licensing fees by $19 million.</span></p>
     16.0pt;font-family:"Times New Roman"'>Contract Sr. Software Engineer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1987
     - 1989&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;various</span></b></p>
 <ul><li><p class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:
-    6.0pt;margin-left:.5in;text-indent:-.25in'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Implemented
+    6.0pt;margin-left:.5in;text-indent:-0in'><span style='font-size:16.0pt;font-family:"Times New Roman"'>Implemented
   components of the California Highway Patrol Computer Aided Dispatch
   system. Supported stringent reliability, fail-over and availability
   requirements, with innovative solutions.</span></p></li>
@@ -306,7 +366,7 @@ dispute with IBM, reducing cross-licensing fees by $19 million.</span></p>
   margin-left:0in;font-size:16.0pt;font-family:"Times New Roman"'>Reverse
     engineer competitor report generation products and duplicate functionality within
     the AREV engine to meet complex customer requirements.</li></ul>
-<p class=MsoNormal style='margin-bottom:6.0pt'><b><span style='font-size:
+<span ng-if="show_realtime"><p class=MsoNormal style='margin-bottom:6.0pt'><b><span style='font-size:
     16.0pt;font-family:"Times New Roman"'>Contract Sr. Software Engineer&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1981
     - 1985&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;various</span></b></p>
 <ul><li class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
@@ -320,7 +380,7 @@ dispute with IBM, reducing cross-licensing fees by $19 million.</span></p>
   <li class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
   margin-left:0in;font-size:16.0pt;font-family:"Times New Roman"'>Research,
     code, test and deliver high performance, high accuracy real time numeric
-    algorithms.</li></ul>
+    algorithms.</li></ul></span>
 </div>
 
 </body>

@@ -88,6 +88,13 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+  .textarea {
+    text-align:left;
+    font-size:36.0pt;
+    font-family:"Times New Roman";
+    font-weight:bold;
+  }
+
 
   /* Paste in the style definitions word created in the html originally */
 <style>
@@ -406,6 +413,8 @@ body {
     font-size:10.0pt;
     font-family:"Arial Black";
     font-weight:bold;}
+  p.Box, li.Box, div.Box, span.Box
+  {border-style: solid;}
   /* Page Definitions */
   @page WordSection1
   {size:8.5in 11.0in;
