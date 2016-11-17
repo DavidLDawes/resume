@@ -1,5 +1,8 @@
 'use strict';
 
+/*jslint node: true */
+/*jshint strict:false */
+
 /**
  * @ngdoc overview
  * @name resumeApp

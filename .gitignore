@@ -41,3 +41,6 @@ jspm_packages
 
 # do not save these, bower install each new clone
 bower_components
+
+# output dir
+dist
