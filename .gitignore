@@ -44,3 +44,6 @@ bower_components
 
 # output dir
 dist
+
+# temp, of course
+.tmp

@@ -11,10 +11,7 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope) {
+
+      $scope.show_manag = true;
   });
