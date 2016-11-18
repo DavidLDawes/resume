@@ -28,9 +28,15 @@
             <span class="nav navbar-nav">
               <a href="#/">Home</a></span>
             <span class="nav navbar-nav">
+              <a href="#resume">Resume</a></span>
+            <span class="nav navbar-nav">
+              <a ng-href="#/videos">Videos</a></span>
+            <span class="nav navbar-nav">
               <a ng-href="#/about">About</a></span>
             <span class="nav navbar-nav">
               <a ng-href="#contact/">Contact</a></span>
+            <span class="nav navbar-nav">
+              <a ng-href="#galaxy/">200 Billion Star Galaxy Simulator</a></span>
           </div>
         </div>
       </div>
@@ -42,12 +48,13 @@
 
     <div class="footer">
       <div class="container">
-        <p>Dynamic Resume by David L. Dawes, demonstrate some simple angular sutff.
-          <a href="http://yeoman.io/learning/">Scaffolded with Yo</a>
-          <a href="https://github.com/yeoman/generator-angular">Angular Generator.</a></p>
+        <p>Dave's playground by David L. Dawes, demonstrate some simple angular sutff.
+          <a href="http://yeoman.io/learning/">Scaffolded/generated with Yo</a>
+          <a href="https://github.com/yeoman/generator-angular">Angular.</a></p>
       </div>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -56,7 +63,7 @@
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
        }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-       ga('create', 'UA-XXXXX-X');
+       ga('create', 'UA-47900245-5');
        ga('send', 'pageview');
     </script>
 
@@ -80,6 +87,13 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/contact.js"></script>
+        <script src="scripts/services/canvas.js"></script>
+        <script src="scripts/services/murmurhash3.js"></script>
+        <script src="scripts/services/randomseed.js"></script>
+        <script src="scripts/services/sector.js"></script>
+        <script src="scripts/controllers/galaxy.js"></script>
+        <script src="scripts/controllers/resume.js"></script>
+        <script src="scripts/controllers/videos.js"></script>
         <!-- endbuild -->
 </body>
 </html>

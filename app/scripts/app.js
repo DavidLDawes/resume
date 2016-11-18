@@ -38,6 +38,21 @@ angular
         controller: 'ContactCtrl',
         controllerAs: 'contact'
       })
+      .when('/galaxy', {
+        templateUrl: 'views/galaxy.html',
+        controller: 'GalaxyCtrl',
+        controllerAs: 'galaxy'
+      })
+      .when('/resume', {
+        templateUrl: 'views/resume.html',
+        controller: 'ResumeCtrl',
+        controllerAs: 'resume'
+      })
+      .when('/videos', {
+        templateUrl: 'views/videos.html',
+        controller: 'VideosCtrl',
+        controllerAs: 'videos'
+      })
       .otherwise({
         redirectTo: '/'
       });
