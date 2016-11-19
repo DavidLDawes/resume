@@ -8,7 +8,7 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('GalaxyCtrl', ['$scope', 'sector', 'canvas', function($scope, sector, canvas) {
+  .controller('GalaxyCtrl', ['$scope', 'sector', 'drawstars', function($scope, sector, drawstars) {
       // focal point
       $scope.x = 0;
       $scope.y = 0;
@@ -24,9 +24,9 @@ angular.module('resumeApp')
 
       // based on zoom, use full sector
       $scope.xmin = 0;
-      $scope.xmax = canvas.const.xadjust;
+      $scope.xmax = drawstars.const.xadjust;
       $scope.ymin = 0;
-      $scope.ymax = canvas.const.yadjust;
+      $scope.ymax = drawstars.const.yadjust;
 
       $scope.lastSectorX = -123454321;
       $scope.lastSectorY = -12345432971;
@@ -48,9 +48,9 @@ angular.module('resumeApp')
       // filtred counts (ZHi and ZLo, zoom soon) passed back to us using this
       $scope.zcounts = [0, 0, 0, 0, 0, 0, 0];
 
-      $scope.xinc = canvas.const.xadjust;
-      $scope.yinc = canvas.const.yadjust;
-      $scope.zinc = canvas.const.zadjust;
+      $scope.xinc = drawstars.const.xadjust;
+      $scope.yinc = drawstars.const.yadjust;
+      $scope.zinc = drawstars.const.zadjust;
 
       // motion buttons (left & right for x, up & down for y, in and out for z) are handled here
       $scope.leftward = function () {
@@ -89,46 +89,46 @@ angular.module('resumeApp')
           switch ($scope.zoom) {
               case 1:
               case '1':
-                  $scope.xinc = canvas.const.xadjust / 16;
-                  $scope.yinc = canvas.const.yadjust / 16;
-                  $scope.zinc = canvas.const.zadjust;
+                  $scope.xinc = drawstars.const.xadjust / 16;
+                  $scope.yinc = drawstars.const.yadjust / 16;
+                  $scope.zinc = drawstars.const.zadjust;
                   break;
               case 2:
               case '2':
-                  $scope.xinc = canvas.const.xadjust / 4;
-                  $scope.yinc = canvas.const.yadjust / 4;
-                  $scope.zinc = canvas.const.zadjust;
+                  $scope.xinc = drawstars.const.xadjust / 4;
+                  $scope.yinc = drawstars.const.yadjust / 4;
+                  $scope.zinc = drawstars.const.zadjust;
                   break;
               case 3:
               case '3':
               default:
-                  $scope.xinc = canvas.const.xadjust;
-                  $scope.yinc = canvas.const.yadjust;
-                  $scope.zinc = canvas.const.zadjust;
+                  $scope.xinc = drawstars.const.xadjust;
+                  $scope.yinc = drawstars.const.yadjust;
+                  $scope.zinc = drawstars.const.zadjust;
                   break;
               case 4:
               case '4':
-                  $scope.xinc = canvas.const.xadjust * 4;
-                  $scope.yinc = canvas.const.yadjust * 4;
-                  $scope.zinc = canvas.const.zadjust * 4;
+                  $scope.xinc = drawstars.const.xadjust * 4;
+                  $scope.yinc = drawstars.const.yadjust * 4;
+                  $scope.zinc = drawstars.const.zadjust * 4;
                   break;
               case 5:
               case '5':
-                  $scope.xinc = canvas.const.xadjust * 16;
-                  $scope.yinc = canvas.const.yadjust * 16;
-                  $scope.zinc = canvas.const.zadjust * 4;
+                  $scope.xinc = drawstars.const.xadjust * 16;
+                  $scope.yinc = drawstars.const.yadjust * 16;
+                  $scope.zinc = drawstars.const.zadjust * 4;
                   break;
               case 6:
               case '6':
-                  $scope.xinc = canvas.const.xadjust * 64;
-                  $scope.yinc = canvas.const.yadjust * 64;
-                  $scope.zinc = canvas.const.zadjust * 4;
+                  $scope.xinc = drawstars.const.xadjust * 64;
+                  $scope.yinc = drawstars.const.yadjust * 64;
+                  $scope.zinc = drawstars.const.zadjust * 4;
                   break;
               case 7:
               case '7':
-                  $scope.xinc = canvas.const.xadjust * 256;
-                  $scope.yinc = canvas.const.yadjust * 256;
-                  $scope.zinc = canvas.const.zadjust * 4;
+                  $scope.xinc = drawstars.const.xadjust * 256;
+                  $scope.yinc = drawstars.const.yadjust * 256;
+                  $scope.zinc = drawstars.const.zadjust * 4;
                   break;
           }
           $scope.lastSectorX = -9999999;
@@ -162,9 +162,9 @@ angular.module('resumeApp')
 
       $scope.draw1sector = function (ix, iy, i, j) {
           var dresult = [];
-          $scope.x = ix + i * canvas.const.xadjust;
-          $scope.y = iy + j * canvas.const.yadjust;
-          sector.init($scope.x + i * canvas.const.xadjust, $scope.y + j * canvas.const.yadjust, $scope.z, $scope.zoom);
+          $scope.x = ix + i * drawstars.const.xadjust;
+          $scope.y = iy + j * drawstars.const.yadjust;
+          sector.init($scope.x + i * drawstars.const.xadjust, $scope.y + j * drawstars.const.yadjust, $scope.z, $scope.zoom);
           dresult = sector.multidraw($scope.zlo, $scope.zhi, $scope.zoom, i, j);
           for (var ires = 0; ires < dresult.length; i++) {
               if (dresult[i] != NaN) {
@@ -232,9 +232,9 @@ angular.module('resumeApp')
               case '7':
                   // all of it for these
                   $scope.xmin = 0;
-                  $scope.xmax = canvas.const.xadjust;
+                  $scope.xmax = drawstars.const.xadjust;
                   $scope.ymin = 0;
-                  $scope.ymax = canvas.const.yadjust;
+                  $scope.ymax = drawstars.const.yadjust;
                   break;
           }
 
@@ -245,7 +245,7 @@ angular.module('resumeApp')
 
           $scope.hash = sector.hash;
 
-          canvas.clear();
+          drawstars.clear();
           sector.legend();
 
           sector.xmin = $scope.xmin;
@@ -294,7 +294,7 @@ angular.module('resumeApp')
       $scope.zhi = 25000;
       $scope.zlo = 0;
 
-      canvas.init();
+      drawstars.init();
       sector.init($scope.x, $scope.y, $scope.z, $scope.zoom);
 
       $scope.lastSector = sector.get

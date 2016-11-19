@@ -5,7 +5,7 @@
 {{soFarFrom}} to {{soFarTo}} out of {{total}}
 <button ng-click="updateNext()" ng-show="pagesLeft()">Next {{perPage.value}}</button><br>
 Thumbnails: <input type="checkbox" ng-model="showThumbs">
-Embedded videos: <input type="checkbox" ng-model="showEmbedded"
+Embedded videos: <input type="checkbox" ng-model="showEmbedded">
 <br/>
 <br>
 <scope ng-if="showThumbs" ng-repeat="video in videos track by video.id.videoId" title = "{{video.snippet.description}}">
@@ -20,9 +20,8 @@ Embedded videos: <input type="checkbox" ng-model="showEmbedded"
          ng-show="showHigh()" ng-click="setEmbedded(video.id.videoId)">
 </scope>
 
-<div ng-if="showThumbs" ng-bind-html="trustedEmbedded"</div>
-</div>
-<scope ng-if="showEmbedded"  ng-repeat="video in videos track by video.id.videoId" title = "{{video.snippet.description}}">
+<div ng-if="showThumbs" ng-bind-html="trustedEmbedded">
+<scope ng-if="showEmbedded" ng-repeat="video in videos track by video.id.videoId" title = "{{video.snippet.description}}">
     <div ng-data="trustedEmbeddedDefault" ng-bind-html="getTrustedEmbedded(video.id.videoId);trustedEmbeddedDefault" style="float: left" ng-show="showDefault()"</div>
     <div ng-data="trustedEmbeddedHigh" ng-bind-html="trustedEmbeddedHigh" style="float: left" ng-show="showHigh()"</div>
     <div ng-data="trustedEmbeddedMedium" ng-bind-html="trustedEmbeddedMedium" style="float: left" ng-show="showMedium()"</div>
