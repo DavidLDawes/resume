@@ -1,1 +1,37 @@
-<p>This is the towerdefense view.</p>
+<br />Generate troops that are {{selectpriority.score}}, with {{selectequip.type}} equipment<br />
+<select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+</select><br />
+<ul>
+    <li ng-repeat='mySoldier in  mySoldiers'>Str {{mySoldier}}.scores[0] Dex {{mySoldier}}.scores[1] Con {{mySoldier}}.scores[2]<br />
+        HP {{mySoldier}}.hp out of max {{mySoldier}}.maxHp HP, AC {{mySoldier}}.ac<br />
+        Weapon {{mySoldier}}.weapon.type and armor {{mySoldier}}.armor.type</li>
+</ul>
+<br />
+<canvas id="battleCanvas" width="480" height="240" style="border:1px solid #000000;"></canvas><br />
+<table style="width:100%">My Soldiers
+    <tr>
+        <td>Str</td>
+        <td>Dex</td>
+        <td>Con</td>
+        <td>HP</td>
+        <td>Max</td>
+        <td>AC</td>
+        <td>Weapon</td>
+        <td>Armor</td>
+    </tr>
+    <tr ng-repeat='theirSoldier in  theirSoldiers' ng-data='theirSoldiers'>
+        <td>{{theirSoldier}}.scores[0]</td>
+        <td>{{theirSoldier}}.scores[1].</td>
+        <td>{{theirSoldier}}.scores[2].</td>
+        <td>{{theirSoldier}}.hp</td>
+        <td>{{theirSoldier}}.maxHp</td>
+        <td>{{theirSoldier}}.ac</td>
+        <td>{{theirSoldier}}.weapon.type</td>
+        <td>{{theirSoldier}}.armor.type</td>
+    </tr>
+</table>
+<img id="self" width="220" height="277" src="images/self.jpg" alt="self" ng-show="0">
+
+<br />Most recent fight:{{fight}}<br />
+<button ng-click="turn()">Generate new troops</button>
+</div>

@@ -49,7 +49,8 @@ angular.module('resumeApp')
               canvas.const.height * (star.sy - ylo + yc * ydelta / loops) / ydelta, fsize, color);
       };
 
-      canvas.init();
+      // if you look in app/views/galaxy.htm you will find a canvas with ID == 'starfield'
+      canvas.init('starfield');
 
       return starcanvas;
 }]);
