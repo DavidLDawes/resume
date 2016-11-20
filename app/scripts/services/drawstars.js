@@ -10,9 +10,6 @@
 angular.module('resumeApp')
   .factory('drawstars', ['canvas', function (canvas) {
 
-      var isGood = function (item) {return (item != null && item != 0)}
-      var isBad = function (item) {return (item == null || item == 0)}
-
       var starcanvas = {
           'version': '0.0.1',
           'const': {
@@ -35,22 +32,24 @@ angular.module('resumeApp')
           if (size > 0) {
               canvas.circle(canvas.const.width * (star.sx - xlo) / xdelta, canvas.const.height * (star.sy - ylo) / ydelta, size, color);
           } else {
-              canvas.arc(canvas.const.width * (star.sx - xlo) / xdelta, canvas.const.height * (star.sy - ylo) / ydelta, 1, color);
+              canvas.circle(canvas.const.width * (star.sx - xlo) / xdelta, canvas.const.height * (star.sy - ylo) / ydelta, 1, color);
           }
       };
 
       starcanvas.drawXY = function (x, y, star, size, color, xlo, xdelta, ylo, ydelta, xc, yc, loops) {
-          if (isBad(canvas.ctxt.context)) {
-              canvas.init();
-          }
           var fsize = size;
-          //if (loops > 5) {fsize = 1}
           if (fsize < 1) {
               fsize = 1
           }
+
+          canvas.ctxt.context.strokeStyle = color;
+          canvas.ctxt.context.fillStyle = color;
+
           canvas.circle(canvas.const.width * (star.sx - xlo + xc * xdelta / loops) / xdelta,
-              canvas.const.height * (star.sy - ylo + yc * ydelta / loops) / ydelta, fsize);
+              canvas.const.height * (star.sy - ylo + yc * ydelta / loops) / ydelta, fsize, color);
       };
+
+      canvas.init();
 
       return starcanvas;
 }]);

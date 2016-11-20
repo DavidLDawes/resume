@@ -135,8 +135,6 @@ angular.module('resumeApp')
                             sect.xmin, loopcnt * (sect.xmax - sect.xmin),
                             sect.ymin, loopcnt * (sect.ymax - sect.ymin), xcnt, ycnt, loopcnt);
                     } else {
-                        drawstars.ctxt.context.strokeStyle = sclass.stars[starcnt].starColor;
-                        drawstars.ctxt.context.fillStyle = sclass.stars[starcnt].starColor;
                         drawstars.drawXY((sect.xmax - sect.xmin) * xcnt + sclass.stars[starcnt].sx,
                             (sect.ymax - sect.ymin) * ycnt + sclass.stars[starcnt].sy,
                             sclass.stars[starcnt], 1, sclass.stars[starcnt].starColor,

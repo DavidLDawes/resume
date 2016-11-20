@@ -9,6 +9,56 @@
  */
 angular.module('resumeApp')
   .controller('GalaxyCtrl', ['$scope', 'sector', 'drawstars', function($scope, sector, drawstars) {
+
+      // use this from the service, not exposed directly on factory
+      var setWindowStarsAndData = function () {
+          switch ($scope.zoom) {
+              case 1:
+              case '1':
+              case 2:
+              case '2':
+                  // from xs, figure out which bit of sector we're in:
+                  $scope.xmin = $scope.xinc * Math.floor($scope.sx / $scope.xinc);
+                  $scope.xmax = $scope.xinc + $scope.xinc * Math.floor($scope.sx / $scope.xinc);
+                  $scope.ymin = $scope.yinc * Math.floor($scope.sy / $scope.yinc);
+                  $scope.ymax = $scope.yinc + $scope.yinc * Math.floor($scope.sy / $scope.yinc);
+                  break;
+              case 3:
+              case '3':
+              default:
+              case 4:
+              case '4':
+              case 5:
+              case '5':
+              case 6:
+              case '6':
+              case 7:
+              case '7':
+                  // all of it for these
+                  $scope.xmin = 0;
+                  $scope.xmax = drawstars.const.xadjust;
+                  $scope.ymin = 0;
+                  $scope.ymax = drawstars.const.yadjust;
+                  break;
+          }
+
+          $scope.stars = sector.starclass;
+          for (var icpy = 0; icpy < $scope.stars.length; icpy++) {
+              $scope.starsize[icpy] = $scope.stars[icpy].length;
+          }
+
+          $scope.hash = sector.hash;
+
+          drawstars.clear();
+          sector.legend();
+
+          sector.xmin = $scope.xmin;
+          sector.xmax = $scope.xmax;
+          sector.ymin = $scope.ymin;
+          sector.ymax = $scope.ymax;
+
+      }
+
       // focal point
       $scope.x = 0;
       $scope.y = 0;
@@ -137,7 +187,7 @@ angular.module('resumeApp')
           $scope.lastZoom = -1;
 
           $scope.locate();
-      }
+      };
 
       $scope.zlofilter = function () {
           if (($scope.zhi < $scope.zlo)) {
@@ -147,7 +197,7 @@ angular.module('resumeApp')
               }
           }
           $scope.locate();
-      }
+      };
 
       $scope.zhifilter = function () {
           if (($scope.zlo > $scope.zhi)) {
@@ -157,7 +207,7 @@ angular.module('resumeApp')
               }
           }
           $scope.locate();
-      }
+      };
 
 
       $scope.draw1sector = function (ix, iy, i, j) {
@@ -166,138 +216,60 @@ angular.module('resumeApp')
           $scope.y = iy + j * drawstars.const.yadjust;
           sector.init($scope.x + i * drawstars.const.xadjust, $scope.y + j * drawstars.const.yadjust, $scope.z, $scope.zoom);
           dresult = sector.multidraw($scope.zlo, $scope.zhi, $scope.zoom, i, j);
-          for (var ires = 0; ires < dresult.length; i++) {
-              if (dresult[i] != NaN) {
-                  if (!dresult[i] < 0) {
-                      $scope.zcounts[i] += dresult[i];
+          for (var ires = 0; ires < dresult.length; ires++) {
+              if (dresult[ires] != NaN) {
+                  if (dresult[ires] > 0) {
+                      $scope.zcounts[ires] += dresult[ires];
                   }
               }
           }
-          if (dresult.length > 0) {
-              $scope.zcounts[0] += dresult[0];
-          }
-          if ($scope.zoom < 6 && dresult.length > 1) {
-              $scope.zcounts[1] += dresult[1];
-          } else {
-              $scope.zcounts[1] = NaN;
-          }
-          if ($scope.zoom < 5 && dresult.length > 4) {
-              $scope.zcounts[2] += dresult[2];
-              $scope.zcounts[3] += dresult[3];
-              $scope.zcounts[4] += dresult[4];
-          } else {
-              $scope.zcounts[2] = NaN;
-              $scope.zcounts[3] = NaN;
-              $scope.zcounts[4] = NaN;
-          }
+      };
+
+      $scope.changed = function() {
+          return ((sector.x2Sector($scope.x) != $scope.lastSectorX) ||
+              (sector.y2Sector($scope.y) != $scope.lastSectorY) ||
+              (sector.z2Sector($scope.z) != $scope.lastSectorZ) ||
+              ($scope.zoom != $scope.lastZoom));
+      };
+
+      $scope.reset = function() {
+          $scope.lastSectorX = sector.x2Sector($scope.x);
+          $scope.lastSectorY = sector.y2Sector($scope.y);
+          $scope.lastSectorZ = sector.z2Sector($scope.z);
+          $scope.lastZoom = $scope.zoom;
       }
 
 
       // location changed or maybe we got an init
       $scope.locate = function () {
-          if ((sector.x2Sector($scope.x) != $scope.lastSectorX) ||
-              (sector.y2Sector($scope.y) != $scope.lastSectorY) ||
-              (sector.z2Sector($scope.z) != $scope.lastSectorZ) ||
-              ($scope.zoom != $scope.lastZoom)) {
+          if ($scope.changed()) {sector.init($scope.x, $scope.y, $scope.z, $scope.zoom); $scope.reset();}
+          setWindowStarsAndData();
 
-              sector.init($scope.x, $scope.y, $scope.z, $scope.zoom);
-
-              $scope.lastSectorX = sector.x2Sector($scope.x);
-              $scope.lastSectorY = sector.y2Sector($scope.y);
-              $scope.lastSectorZ = sector.z2Sector($scope.z);
-              $scope.lastZoom = $scope.zoom;
-          }
-
-          switch ($scope.zoom) {
-              case 1:
-              case '1':
-              case 2:
-              case '2':
-                  // from xs, figure out which bit of sector we're in:
-                  $scope.xmin = $scope.xinc * Math.floor($scope.sx / $scope.xinc);
-                  $scope.xmax = $scope.xinc + $scope.xinc * Math.floor($scope.sx / $scope.xinc);
-                  $scope.ymin = $scope.yinc * Math.floor($scope.sy / $scope.yinc);
-                  $scope.ymax = $scope.yinc + $scope.yinc * Math.floor($scope.sy / $scope.yinc);
-                  break;
-              case 3:
-              case '3':
-              default:
-              case 4:
-              case '4':
-              case 5:
-              case '5':
-              case 6:
-              case '6':
-              case 7:
-              case '7':
-                  // all of it for these
-                  $scope.xmin = 0;
-                  $scope.xmax = drawstars.const.xadjust;
-                  $scope.ymin = 0;
-                  $scope.ymax = drawstars.const.yadjust;
-                  break;
-          }
-
-          $scope.stars = sector.starclass
-          for (var icpy = 0; icpy < $scope.stars.length; icpy++) {
-              $scope.starsize[icpy] = $scope.stars[icpy].length;
-          }
-
-          $scope.hash = sector.hash;
-
-          drawstars.clear();
-          sector.legend();
-
-          sector.xmin = $scope.xmin;
-          sector.xmax = $scope.xmax;
-          sector.ymin = $scope.ymin;
-          sector.ymax = $scope.ymax;
-          if ($scope.zoom < 4) {
-              $scope.zcounts = sector.draw($scope.zlo, $scope.zhi, $scope.zoom);
+          // 1 or less is easy
+          if ($scope.zoom < 4) {$scope.zcounts = sector.draw($scope.zlo, $scope.zhi, $scope.zoom);
           } else {
-              $scope.zcounts[0] = 0;
-              $scope.zcounts[1] = 0;
-              $scope.zcounts[2] = 0;
-              $scope.zcounts[3] = 0;
-              $scope.zcounts[4] = 0;
-              $scope.zcounts[5] = 0;
-              $scope.zcounts[6] = 0;
-              var zresult = [];
+              // 4x4 or more
+              var zresult = []; var sectorscale = 4;
+              for (var logme = 4; logme < $scope.zoom; logme++) {sectorscale *= 4;}
 
-              var sectorscale = 4;
-              for (var logme = 4; logme < $scope.zoom; logme++) {
-                  sectorscale *= 4;
-              }
-
-              var initx = $scope.x;
-              var inity = $scope.y;
-              for (var zc0 = 0; zc0 < sector.classByZoom[$scope.zoom]; zc0++) {
-                  $scope.zcounts[zc0] = 0;
-              }
-              for (var zc0 = sector.classByZoom[$scope.zoom]; zc0 < $scope.zcounts.length; zc0++) {
-                  $scope.zcounts[i] = NaN;
-              }
+              var initx = $scope.x; var inity = $scope.y;
+              for (var zc0 = 0; zc0 < sector.classByZoom[$scope.zoom]; zc0++) {$scope.zcounts[zc0] = 0;}
+              for (zc0 = sector.classByZoom[$scope.zoom]; zc0 < $scope.zcounts.length; zc0++) {$scope.zcounts[zc0] = NaN;}
               for (var i = 0; i < sectorscale; i++) {
-                  for (var j = 0; j < sectorscale; j++) {
-                      $scope.draw1sector(initx, inity, i, j);
-                  }
+                  for (var j = 0; j < sectorscale; j++) {$scope.draw1sector(initx, inity, i, j);}
               }
-              $scope.x = initx;
-              $scope.y = inity;
-
+              $scope.x = initx; $scope.y = inity;
           }
 
           $scope.starsize = $scope.zcounts;
       };
 
       // start with Z limits set to max
-      $scope.zhi = 25000;
-      $scope.zlo = 0;
+      $scope.zhi = 25000; $scope.zlo = 0;
 
-      drawstars.init();
-      sector.init($scope.x, $scope.y, $scope.z, $scope.zoom);
+      // get things initialized
+      drawstars.init(); sector.init($scope.x, $scope.y, $scope.z, $scope.zoom);
 
-      $scope.lastSector = sector.get
       $scope.lastSectorX = sector.x2Sector($scope.x);
       $scope.lastSectorY = sector.y2Sector($scope.y);
       $scope.lastSectorZ = sector.z2Sector($scope.z);
