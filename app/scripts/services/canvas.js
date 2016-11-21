@@ -35,10 +35,30 @@ angular.module('resumeApp')
             isBad(canvas.ctxt.context)) {canvas.ctxt.context = canvas.ctxt.elementid.getContext('2d');}
 
         // Public API here
-        canvas.init = function (canvasID) {
+        canvas.init = function (canvasID, canvasWidth, canvasHeight) {
             canvas.ctxt.canvasID = canvasID;
+            if (canvasWidth === undefined) {
+                if (canvasHeight === undefined) {
+                    canvas.ctxt.width = 800;
+                    canvas.ctxt.height = 640;
+                } else {
+                    canvas.ctxt.width = 800;
+                    canvas.ctxt.height = canvasHeight;
+                }
+            } else {
+                canvas.ctxt.width = canvasWidth;
+                if (canvasHeight === undefined) {
+                    canvas.ctxt.with = canvasWidth;
+                    canvas.ctxt.height = 640;
+                } else {
+                    canvas.const.height = canvasHeight;
+                    canvas.const.width = canvasWidth;
+                }
+            }
             canvas.ctxt.elementid = $document[0].getElementById(canvasID);
-            if (isGood(canvas.ctxt.elementid)) {canvas.ctxt.context = canvas.ctxt.elementid.getContext("2d");}
+            if (isGood(canvas.ctxt.elementid)) {
+                canvas.ctxt.context = canvas.ctxt.elementid.getContext("2d");
+            }
         };
 
         canvas.clear = function () {

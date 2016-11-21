@@ -10,19 +10,21 @@
 angular.module('resumeApp')
   .factory('canvastower', ['$document', 'canvas', function ($document, canvas) {
 
-      var battlefield, imgStick, cBattle, ctxBattle, fight,
-          stickWidth = 10, canvasWidth = 480;
+      var battlefield, cBattle, ctxBattle, fight,
+          iconWidth = canvas.const.width /20;
+
+      var imgDagger = $document[0].getElementById('dagger');
+      var imgShortSword = $document[0].getElementById('shortsword');
+      var imgLongSword = $document[0].getElementById('sword');
+      var imgTwoHandedSword = $document[0].getElementById('twohandedsword');
 
       var towercanvas = {
           'version': '0.0.1',
-          'const': {
-              'xsize': 100, 'ysize': 100, 'zsize': 25, 'scaler': 1000,
-              'zscaler': 250, 'xadjust': 100000, 'yadjust': 100000, 'zadjust': 25000, 'fg': 0xFFFFFF, 'bg': 0x000000
-          },
+          'const': {'xsize': 15, 'ysize': 160, 'xporch':20, 'yporch': 20},
+
           init: function() {
-              canvas.init('battleCanvas');
+              canvas.init('battleCanvas', 640, 200);
               ctxBattle = canvas.ctxt.context;
-              if (imgStick === undefined) {imgStick = $document[0].getElementById('self');}
           },
           clear: function() {canvas.set();},
           ultest: function(saythis) {canvas.ultext(saythis);},
@@ -33,11 +35,6 @@ angular.module('resumeApp')
           lmtext: function(saythis) {canvas.lmtext(saythis);},
           mrtext: function(saythis) {canvas.mrtext(saythis);},
           lrtext: function(saythis) {canvas.lrtext(saythis);},
-
-          initBattleCanvas: function() {
-              canvas.init('battleCanvas');
-              if (imgStick === undefined) {imgStick = $document[0].getElementById('self');}
-          },
 
           getFight: function() {
               if (fight === undefined) {fight = null;}
@@ -50,8 +47,6 @@ angular.module('resumeApp')
 
           showGraphic: function(bfld, ctx) {
               if ((ctx !== undefined) && (ctx !== null)) {
-                  // get things set, if they aren't already.
-                  if (imgStick === undefined) {imgStick = $document[0].getElementById('stick');}
                   // now get ready to draw them
                   this.drawFigures(bfld, ctx);
               }
@@ -67,7 +62,7 @@ angular.module('resumeApp')
                   if (bfield[i] === null) {
                       canvas.set();
                   } else {
-                      canvas.drawImage(i*stickWidth, 12, imgStick);
+                      canvas.drawImage(i*stickWidth, 12, imgLongSword);
                       canvas.sayxy('st', i*stickWidth, 40);
                       canvas.sayxy(bfield[i].scores[0], i * stickWidth, 50);
                       canvas.sayxy('dx', i * stickWidth, 62);
