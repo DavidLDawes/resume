@@ -1,0 +1,14 @@
+<br />Playing with cards<br />
+<select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+</select><br />
+<ul>
+    <li ng-repeat='mySoldier in  mySoldiers'>Str {{mySoldier}}.scores[0] Dex {{mySoldier}}.scores[1] Con {{mySoldier}}.scores[2]<br />
+        HP {{mySoldier}}.hp out of max {{mySoldier}}.maxHp HP, AC {{mySoldier}}.ac<br />
+        Weapon {{mySoldier}}.weapon.type and armor {{mySoldier}}.armor.type</li>
+</ul>
+<br />
+<canvas id="cardsCanvas" width="1440" height="1080" style="border:1px solid #000000;"></canvas><br />
+<button ng-click="drawSprite(0,0,0,0)">Draw a sprite</button>
+<button ng-click="drawSprite(3,2,1,0)">Draw another sprite</button>
+<button ng-click="drawSprite(11,3,2,0)">Draw yet another sprite</button>
+</div>

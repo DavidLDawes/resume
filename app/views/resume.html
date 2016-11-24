@@ -1,5 +1,3 @@
-<html>
-
 <head>
     <meta name=Title content="Professional Resume">
     <meta name=Keywords content="resume dawes">
@@ -8,6 +6,8 @@
     <title>Professional Resume</title>
 </head>
 <header>
+    <select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+    </select><br />
   <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;
 margin-left:0pt' style='font-size:16.0pt;font-family:"Times New Roman"'>Management: <input type="checkbox" ng-model="show_manage" name="manage"></span>
     <span class=MsoNormal style='margin-top:0in;margin-right:0in;margin-bottom:6.0pt;

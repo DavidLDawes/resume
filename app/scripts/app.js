@@ -58,6 +58,11 @@ angular
         controller: 'TowerdefenseCtrl',
         controllerAs: 'towerdefense'
       })
+      .when('/cards', {
+        templateUrl: 'views/cards.html',
+        controller: 'CardsCtrl',
+        controllerAs: 'cards'
+      })
       .otherwise({
         redirectTo: '/'
       });

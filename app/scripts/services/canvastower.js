@@ -10,20 +10,75 @@
 angular.module('resumeApp')
   .factory('canvastower', ['$document', 'canvas', function ($document, canvas) {
 
-      var battlefield, cBattle, ctxBattle, fight,
-          iconWidth = canvas.const.width /20;
+      var battlefield, cBattle, ctxBattle, fight;
 
       var imgDagger = $document[0].getElementById('dagger');
       var imgShortSword = $document[0].getElementById('shortsword');
       var imgLongSword = $document[0].getElementById('sword');
       var imgTwoHandedSword = $document[0].getElementById('twohandedsword');
+      var imgBlank = $document[0].getElementById('blank');
+      var statnames = ['st', 'dx', 'cn', 'hp', 'max', 'ac'];
+      var canvaswidth = 640, canvasheight = 200, fieldspaces = 40, xp = 20, yp = 20;
+      var xbattlefield = canvaswidth - 2 * xp;
+      var xspacesize = Math.floor(xbattlefield / fieldspaces);
+      var ybattlefield = canvaswidth - 2 * yp;
+      var yspacesize = ybattlefield;
+
+
+      var fightrounds = function (mefirst) {
+          var result, offset = 0, hedied = false;
+          // A Fight! We go first
+
+          fight = '';
+          while ((battlefield[found + 1].hp > 0) && (battlefield[found].hp > 0)) {
+              // first we attack them
+              if (mefirst) {
+                  result = this.hit(battlefield[found + 1 + offset], battlefield[found + offset]);
+                  if (result) {
+                      battlefield[found + 1 + offset].hp -= result;
+                      if (battlefield[found + 1 + offset].hp < 1) {
+                          fight += ' You killed them with ' + result + ' damage, they died with ' + battlefield[found + 1 + offset].hp + 'HP.';
+                          hedied = true;
+                          battlefield[found + 1 + offset] = null;
+                          window.alert(fight);
+                      } else {
+                          fight += ' You hit for ' + result + ' damage, they have ' + battlefield[found + 1 + offset].hp + 'HP remaining.';
+                      }
+                  } else {
+                      fight += ' You miss.';
+                  }
+              } else {
+                  offset = 1;
+                  //only skip me 1 time at most
+                  mefirst = true;
+              }
+
+              if (!hedied) {
+                  // NOW they attack us (only if he did not die already)
+                  result = this.hit(battlefield[found + offset], battlefield[found + 1 + offset]);
+                  if (result) {
+                      battlefield[found = + offset].hp -= result;
+                      if (battlefield[found + offset].hp < 1) {
+                          fight += ' They killed you with ' + result + ' damage, you died with ' + battlefield[found + offset].hp + 'HP.';
+                          battlefield[found + offset] = null;
+                          window.alert(fight);
+                          break;
+                      } else {
+                          fight += ' They hit for ' + result + ' damage, you have ' + battlefield[found + offset].hp + 'HP remaining.';
+                      }
+                  } else {
+                      fight += ' They miss.';
+                  }
+              }
+          }
+          return result;
+      };
 
       var towercanvas = {
           'version': '0.0.1',
-          'const': {'xsize': 15, 'ysize': 160, 'xporch':20, 'yporch': 20},
-
+          'const': {'fieldcount': fieldspaces, 'xsize': xspacesize, 'ysize': yspacesize, 'xporch':xp, 'yporch': yp},
           init: function() {
-              canvas.init('battleCanvas', 640, 200);
+              canvas.init('battleCanvas', canvaswidth, canvasheight);
               ctxBattle = canvas.ctxt.context;
           },
           clear: function() {canvas.set();},
@@ -60,89 +115,37 @@ angular.module('resumeApp')
               for (i=0; i<bfield.length; i++)
               {
                   if (bfield[i] === null) {
-                      canvas.set();
+                      canvas.drawImage(xp + i*towercanvas.const.x, yp + towercanvas.const.x, imgBlank);
                   } else {
-                      canvas.drawImage(i*stickWidth, 12, imgLongSword);
-                      canvas.sayxy('st', i*stickWidth, 40);
-                      canvas.sayxy(bfield[i].scores[0], i * stickWidth, 50);
-                      canvas.sayxy('dx', i * stickWidth, 62);
-                      canvas.sayxy(bfield[i].scores[1], i * stickWidth, 72);
-                      canvas.sayxy('cn', i * stickWidth, 84);
-                      canvas.sayxy(bfield[i].scores[2], i * stickWidth, 94);
-                      canvas.sayxy('hp', i * stickWidth, 106);
-                      canvas.sayxy(bfield[i].hp, i * stickWidth, 116);
-                      canvas.sayxy('max', i * stickWidth, 128);
-                      canvas.sayxy(bfield[i].maxHp, i * stickWidth, 138);
-                      canvas.sayxy('ac', i * stickWidth, 150);
-                      canvas.sayxy(bfield[i].ac, i * stickWidth, 162);
-/*                      if (bfield[i].weapon.type === 'knife') {
-                          if (bfield[i].mine === 'true') {
-                              k = stickWidth - 1;
-                          } else {
-                              k = 0;
-                          }
-                          drawctx.moveTo(i*stickWidth + k, 18);
-                          drawctx.lineTo(i*stickWidth + k, 16);
-                          drawctx.stroke();
-                      } else if (bfield[i].weapon.type === 'short sword') {
-                          drawctx.moveTo(i*stickWidth + k, 18);
-                          drawctx.lineTo(i*stickWidth + k, 15);
-                          drawctx.stroke();
-                      } else if (bfield[i].weapon.type === 'broad sword') {
-                          drawctx.moveTo(i*stickWidth + k + 1, 18);
-                          drawctx.lineTo(i*stickWidth + k + 1, 16);
-                          drawctx.stroke();
-                          drawctx.moveTo(i*stickWidth + k, 18);
-                          drawctx.lineTo(i*stickWidth + k, 16);
-                          drawctx.stroke();
-                      } else if (bfield[i].weapon.type === 'long sword') {
-                          drawctx.moveTo(i*stickWidth + k, 18);
-                          drawctx.lineTo(i*stickWidth + k, 14);
-                          drawctx.stroke();
-                      } else if (bfield[i].weapon.type === 'great sword') {
-                          drawctx.moveTo(i*stickWidth + k, 18);
-                          drawctx.lineTo(i*stickWidth + k, 12);
-                          drawctx.stroke();
-                          drawctx.moveTo(i*stickWidth + k + 1, 18);
-                          drawctx.lineTo(i*stickWidth + k + 1, 14);
-                          drawctx.stroke();
-                          drawctx.moveTo(i*stickWidth + k - 1, 18);
-                          drawctx.lineTo(i*stickWidth + k - 1, 14);
-                          drawctx.stroke();
+                      canvas.drawImage(xp + i*xspacesize, yp, imgLongSword);
+                      for (var stat=0; stat<statnames.size; stat++) {
+                          canvas.sayxy(statnames[stat], xp + i*xspacesize, yp + 22 * stat);
+                          canvas.sayxy(bfield[i].scores[stat], xp + i * xspacesize, yp + 10 + 22 * stat);
                       }
-  */
-                  }
+                }
               }
           },
 
           getBattlefield: function () {
               if (battlefield === undefined) {
-                  battlefield = [
-                      null, null, null, null, null, null, null, null, null, null, null, null,
-                      null, null, null, null, null, null, null, null, null, null, null, null,
-                      null, null, null, null, null, null, null, null, null, null, null, null,
-                      null, null, null, null, null, null, null, null, null, null, null, null,
-                      null, null, null, null, null, null, null, null, null, null, null, null ];
+                  battlefield = [];
+                  for (var i =0; i<fieldspaces; i++) {
+                      battlefield.push(null);
+                  }
               }
               return battlefield;
           },
 
           updateBattlefield: function (us, them) {
-              var i, found;
-
-              found = -1;
-              for (i = 0; i<canvasWidth/stickWidth; i++) {
+              var i, found = -1;
+              for (i = 0; i<canvas.const.width/100; i++) {
                   // find our last one
                   if (battlefield[i] !== null) {
-                      if (battlefield[i].mine === 'true') {
-                          found = i;
-                      } else {
-                          break;
-                      }
+                      if (battlefield[i].mine === 'true') {found = i;} else {break;}
                   }
               }
               if (found > -1) {
-                  if (found < canvasWidth/stickWidth - 1) {
+                  if (found < fieldspaces - 1) {
                       if (battlefield[found + 1] === null) {
                           // we are advancing unopposed
                           for (i = found; i > -1; i--) {
@@ -151,90 +154,20 @@ angular.module('resumeApp')
                           }
                           // now they advance
                           if (battlefield[found + 2] !== null) {
-                              // A Fight! They go first
-                              fight = '';
-                              while ((battlefield[found + 1].hp > 0) && (battlefield[found + 2].hp > 0)) {
-                                  if (fight.length > 32768) {
-                                      fight = fight.substring(16384, fight.length);
-                                  }
-                                  // first they attack us
-                                  i = this.hit(battlefield[found + 1], battlefield[found + 2]);
-                                  if (i) {
-                                      battlefield[found + 1].hp -= i;
-                                      if (battlefield[found + 1].hp < 1) {
-                                          fight += ' They killed you with ' + i + ' damage, you died with ' + battlefield[found + 1].hp + 'HP.';
-                                          battlefield[found + 1] = null;
-                                          window.alert(fight);
-                                          break;
-                                      } else {
-                                          fight += ' They hit for ' + i + ' damage, you have ' + battlefield[found + 1].hp + 'HP remaining.';
-                                      }
-                                  } else {
-                                      fight += ' They miss.';
-                                  }
-                                  // now we attack them
-                                  i = this.hit(battlefield[found + 2], battlefield[found + 1]);
-                                  if (i) {
-                                      battlefield[found + 2].hp -= i;
-                                      if (battlefield[found + 2].hp < 1) {
-                                          fight += ' You killed them with ' + i + ' damage, they died with ' + battlefield[found + 2].hp + 'HP.';
-                                          battlefield[found + 2] = null;
-                                          window.alert(fight);
-                                          break;
-                                      } else {
-                                          fight += ' You hit for ' + i + ' damage, they have ' + battlefield[found + 2].hp + 'HP remaining.';
-                                      }
-                                  } else {
-                                      fight += ' You miss.';
-                                  }
-                              }
+                              // Fight! they go first
+                              fightrounds(false);
                           } else {
-                              for (i=found + 3; i<canvasWidth/stickWidth; i++)
-                              {
-                                  battlefield[i - 1] = battlefield[i];
-                              }
+                              for (i=found + 3; i<fieldspaces; i++) {battlefield[i - 1] = battlefield[i];}
                           }
                       } else {
-                          // A Fight! We go first
-                          fight = '';
-                          while ((battlefield[found + 1].hp > 0) && (battlefield[found].hp > 0)) {
-                              // first we attack them
-                              i = this.hit(battlefield[found + 1], battlefield[found]);
-                              if (i) {
-                                  battlefield[found + 1].hp -= i;
-                                  if (battlefield[found + 1].hp < 1) {
-                                      fight += ' You killed them with ' + i + ' damage, they died with ' + battlefield[found + 1].hp + 'HP.';
-                                      battlefield[found + 1] = null;
-                                      window.alert(fight);
-                                      break;
-                                  } else {
-                                      fight += ' You hit for ' + i + ' damage, they have ' + battlefield[found + 1].hp + 'HP remaining.';
-                                  }
-                              } else {
-                                  fight += ' You miss.';
-                              }
-
-                              // NOW they attack us
-                              i = this.hit(battlefield[found], battlefield[found + 1]);
-                              if (i) {
-                                  battlefield[found].hp -= i;
-                                  if (battlefield[found].hp < 1) {
-                                      fight += ' They killed you with ' + i + ' damage, you died with ' + battlefield[found].hp + 'HP.';
-                                      battlefield[found] = null;
-                                      window.alert(fight);
-                                      break;
-                                  } else {
-                                      fight += ' They hit for ' + i + ' damage, you have ' + battlefield[found].hp + 'HP remaining.';
-                                  }
-                              } else {
-                                  fight += ' They miss.';
-                              }
-                          }
+                          // next space occupied, we fight rather than advance
+                          // we go first
+                          fightrounds(true);
                       }
                   } else {
                       // A Win!!
                       window.alert('You won! ');
-                      battlefield[canvasWidth/stickWidth - 1] = null;
+                      battlefield[fieldspaces - 1] = null;
                   }
               } else {
                   // enemy advances unopposed
@@ -243,19 +176,19 @@ angular.module('resumeApp')
                       window.alert('You lost!');
                       battlefield[0] = null;
                   } else {
-                      for (i=0; i<canvasWidth/stickWidth - 1; i++) {
+                      for (i=0; i<fieldspaces - 1; i++) {
                           battlefield[i] = battlefield[i + 1];
                       }
                   }
               }
-              if (battlefield[canvasWidth/stickWidth - 1] === null) {
+              if (battlefield[fieldspaces - 1] === null) {
                   if (them !== null) {
                       them.mine = 'false';
-                      battlefield[canvasWidth/stickWidth - 1] = them;
+                      battlefield[fieldspaces - 1] = them;
                   }
               } else {
-                  if (battlefield[canvasWidth/stickWidth - 1].mine === 'false') {
-                      battlefield[canvasWidth/stickWidth - 1] = null;
+                  if (battlefield[fieldspaces - 1].mine === 'false') {
+                      battlefield[fieldspaces - 1] = null;
                   }
               }
               if ((battlefield[0] === null)) {

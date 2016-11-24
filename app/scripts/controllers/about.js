@@ -11,10 +11,10 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('AboutCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('AboutCtrl', ['$scope', '$location', 'links', function ($scope, $location, links) {
+      $scope.selectlink = links.links[links.indexFromView('Resume')];
+      $scope.links = links.links;
+      $scope.go = function(link) {
+          if (link.view !== 'Resume') {$location.path( link.link );}
+      };
+  }]);
