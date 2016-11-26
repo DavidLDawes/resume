@@ -1,12 +1,61 @@
 Dave's Angular Playground
 Published November 2016
 
+<h2>Cards</h2>
 Cards stuff plays with a 2D sprite array, drawing them on the canvas. Doesn't do much, but it shows how
-you can script display of cards at locations on the screen from buttons. Alos uses canvas as an abstraction sorta,
+you can script display of cards at locations on the screen from buttons. Also uses canvas as an abstraction sorta,
 which pays off in other pages like:
-
+<h2>Galaxy</h2>
 Galaxy is a 3D galaxy simulation that plays with large scale ranges.
+
+The idea I worked out here is how to create a "generative" galaxy.
+The generative algorithm is per sector, so convert any (x,y,z) to a sector by dividing by 100, 100 and 25
+respectively, taking the integer or "floor" portion as the result. Given an integer triplet x,y,z sector, create a
+string of them with spaces i.e. '0 0 0'
+Hash that string with the murmur3 hash (cool point: encapsulated the murmur3 hash as an Angular service or factory,
+see app/scrtipts/services)
+use the bytes and bits in the results in a planned way as seeds for a pseudo-random number generator.
+Calculate the number then location of the brightest stars, then next brightest, and so on down to dimmest stars for
+the sector. (another cool point: wrapped simple 31 bit pseudo-RNG as a service; nice to have: make it 64 bit)
+Now use the list of stars and locations to draw the result out on the canvas.
+The algorithms are pretty simple and fast in Javascript, so no reference to anything external is needed once we
+load the Angular page. It is repeatable, so anybody running the calculation for a given sector will get the
+exact same result: same number of stars in each class, same locations, etc. By basing it on fairly well seeded
+RNG, the sectors have a large amount of variety and no obvious repeats or patterns appear.
+
+Zooms are by a factor of 4.
+Default scale is 3 = 100x100 light years in x&y, zoom in to 2 and you get 25x25 LY, and down to 1 you get 6.25x6.25
+light years.
+Going the other direction, at 4 there are 4x4 sectors, 400x400 light years.
+Zoomed out to 5 there are 4x4 sectors, 1,600x1,600 light years.
+Going the other direction, at 6 there are 64x64 sectors, 6,400x6,400 light years.
+Going the other direction, at 7 there are 256x256 sectors, 25,600x25,600 light years.
+
+Another cool point: as the scale is increased, the dimmer stars are no longer drawn. Since we generate the lists of
+stars from brightest to dimmest, we can stop once we get to the dimmest we need to draw. Since we draw fewer as the
+scale increases, the calculations get faster so it performs better than x-squared, which is what you normally
+get from a 2D representation: 4x scale = 16x overhead.
+
+
+Nice to have: calculate where the rare blue giants are on a supersector basis at the start of the per sector algorithm.
+Now when we get to the 1,024x1,024 supersector range we can skip from sector by sector (so that is only needed up to
+256x256) and graph the whole 102,400 x 102,400 light year sector as a single panel, each sector is a pixel at most.
+
 At basic zoom (level 3, which is arbitrary) it shows a 100 light years x 100 light years x 25 light years "sector."
-The overall galaxy has 1,800 x 900 x 
+The overall galaxy has 1,800 x 900 x 80 sectors, all roughly the same average star distribution: no arms, voids,
+clouds or nebulas. Just stars.
+Used <a href="https://en.wikipedia.org/wiki/Stellar_classification">the wikipedia page on Stellar Classification</a> for the basic odds.
+
 It is an isometric projection (z is ignored, plot based on X & Y, so there's no perspective).
-Buttons allow you to wander around by
+Buttons allow you to wander around by a sector at a time
+
+To get reasonable performance and appearance, dimmer classes of stars are only shown on the smallest scales.
+At the highest scales, only the brightest (blue supergiants) are displayed.
+
+The Z axis controls allow you to select subsets of the sector by limiting the top and bottom Z values. Setting the
+sliders close together allows for narrow slices. They start open wide - show from bottom to top.
+
+Nice to have ideas:
+Add perspective
+Add ability to rotate point-of-view aways from Z axis arbitrarily
+Make canves virtual, allow for "flying across canvas" simply by peridoically redrawing at a slight offset.
