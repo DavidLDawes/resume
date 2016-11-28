@@ -1,5 +1,7 @@
 'use strict';
 
+/*jslint node: true */
+/*jshint strict:false */
 /**
  * @ngdoc function
  * @name resumeApp.controller:CardsCtrl
@@ -8,8 +10,7 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('CardsCtrl', ['cardsprites', 'links', '$scope', '$document', function (cardsprites, links, $scope, $document) {
-
+  .controller('CardsCtrl', ['$scope', '$location', 'cardsprites', 'links', function ($scope, $location, cardsprites, links) {
       $scope.selectlink = links.links[links.indexFromView('Cards')];
       $scope.links = links.links;
       $scope.go = function(link) {
@@ -22,5 +23,5 @@ angular.module('resumeApp')
 
       $scope.drawSprite = function(i, j, x, y) {
           cardsprites.drawSprite(i, j, x, y);
-      }
+      };
   }]);

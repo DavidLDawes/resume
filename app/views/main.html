@@ -7,7 +7,8 @@
   <title>David L. Dawes Web Site</title>
 </head>
 <header>
-    <h2 class=MsoTitle align=center style='font-size:24.0pt;font-family:"Arial Black";font-weight:normal'>
+    <select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+    </select>    <h2 class=MsoTitle align=center style='font-size:24.0pt;font-family:"Arial Black";font-weight:normal'>
         Dave's playground</h2>
     <h2 class=Address2 align=center style='margin-top:6.0pt;text-align:center'>Assorted tests, work in progress and useful bits</h2>
     <a href="#about">

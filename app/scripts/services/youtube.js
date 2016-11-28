@@ -1,5 +1,6 @@
 'use strict';
 
+/*jshint strict:false */
 /**
  * @ngdoc service
  * @name resumeApp.youtube
@@ -15,7 +16,7 @@ angular.module('resumeApp')
           'https://www.googleapis.com/auth/youtube'
       ];
       var ytvideoPromise, ytPageToken, ytvideos, ytstatus = 'starting', resultInjector;
-      var cacheVideos, ytnextPage, currentPage, totalCount, fetchSize = 50, pageSize = 10;;
+      var cacheVideos, ytnextPage, currentPage, totalCount, fetchSize = 50, pageSize = 10;
 
       var urlstart = 'https://www.googleapis.com/youtube/v3/search' +
           '?part=snippet&channelId=UC3O0zQOrbjLCYqYJ1rpvTRg&maxResults=' +

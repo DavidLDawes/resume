@@ -1,5 +1,7 @@
 'use strict';
 
+/*jslint node: true */
+/*jshint strict:false */
 /**
  * @ngdoc function
  * @name resumeApp.controller:GalaxyCtrl
@@ -8,7 +10,12 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('GalaxyCtrl', ['$scope', 'sector', 'drawstars', function($scope, sector, drawstars) {
+  .controller('GalaxyCtrl', ['$scope', '$location', 'sector', 'drawstars', 'links', function($scope, $location, sector, drawstars, links) {
+      $scope.selectlink = links.links[links.indexFromView('Galaxy')];
+      $scope.links = links.links;
+      $scope.go = function(link) {
+          if (link.view !== 'Galaxy') {$location.path( link.link );}
+      };
 
       // use this from the service, not exposed directly on factory
       var setWindowStarsAndData = function () {
@@ -23,9 +30,9 @@ angular.module('resumeApp')
                   $scope.ymin = $scope.yinc * Math.floor($scope.sy / $scope.yinc);
                   $scope.ymax = $scope.yinc + $scope.yinc * Math.floor($scope.sy / $scope.yinc);
                   break;
+              default:
               case 3:
               case '3':
-              default:
               case 4:
               case '4':
               case 5:
@@ -57,7 +64,7 @@ angular.module('resumeApp')
           sector.ymin = $scope.ymin;
           sector.ymax = $scope.ymax;
 
-      }
+      };
 
       // focal point
       $scope.x = 0;
@@ -106,33 +113,33 @@ angular.module('resumeApp')
       $scope.leftward = function () {
           $scope.x -= $scope.xinc;
           $scope.locate();
-      }
+      };
 
       $scope.rightward = function () {
           $scope.x += $scope.xinc;
           $scope.locate();
-      }
+      };
 
       $scope.upward = function () {
 
           $scope.y += $scope.yinc;
           $scope.locate();
-      }
+      };
 
       $scope.downward = function () {
           $scope.y -= $scope.yinc;
           $scope.locate();
-      }
+      };
 
       $scope.inward = function () {
           $scope.z -= $scope.zinc;
           $scope.locate();
-      }
+      };
 
       $scope.outward = function () {
           $scope.z += $scope.zinc;
           $scope.locate();
-      }
+      };
 
       // zoom changed so modify as needed
       $scope.rezoom = function () {
@@ -191,7 +198,7 @@ angular.module('resumeApp')
 
       $scope.zlofilter = function () {
           if (($scope.zhi < $scope.zlo)) {
-              $scope.zhi = $scope.zlo + $scope.xinc * .04;
+              $scope.zhi = $scope.zlo + $scope.xinc * 0.04;
               if ($scope.zhi > $scope.zinc) {
                   $scope.zhi = $scope.zinc;
               }
@@ -201,7 +208,7 @@ angular.module('resumeApp')
 
       $scope.zhifilter = function () {
           if (($scope.zlo > $scope.zhi)) {
-              $scope.zlo = $scope.zhi - $scope.xinc * .04;
+              $scope.zlo = $scope.zhi - $scope.xinc * 0.04;
               if ($scope.zlo < 0) {
                   $scope.zlo = 0;
               }
@@ -217,7 +224,7 @@ angular.module('resumeApp')
           sector.init($scope.x + i * drawstars.const.xadjust, $scope.y + j * drawstars.const.yadjust, $scope.z, $scope.zoom);
           dresult = sector.multidraw($scope.zlo, $scope.zhi, $scope.zoom, i, j);
           for (var ires = 0; ires < dresult.length; ires++) {
-              if (dresult[ires] != NaN) {
+              if (!isNaN(dresult[ires]) ) {
                   if (dresult[ires] > 0) {
                       $scope.zcounts[ires] += dresult[ires];
                   }
@@ -226,10 +233,10 @@ angular.module('resumeApp')
       };
 
       $scope.changed = function() {
-          return ((sector.x2Sector($scope.x) != $scope.lastSectorX) ||
-              (sector.y2Sector($scope.y) != $scope.lastSectorY) ||
-              (sector.z2Sector($scope.z) != $scope.lastSectorZ) ||
-              ($scope.zoom != $scope.lastZoom));
+          return ((sector.x2Sector($scope.x) !== $scope.lastSectorX) ||
+              (sector.y2Sector($scope.y) !== $scope.lastSectorY) ||
+              (sector.z2Sector($scope.z) !== $scope.lastSectorZ) ||
+              ($scope.zoom !== $scope.lastZoom));
       };
 
       $scope.reset = function() {
@@ -237,7 +244,7 @@ angular.module('resumeApp')
           $scope.lastSectorY = sector.y2Sector($scope.y);
           $scope.lastSectorZ = sector.z2Sector($scope.z);
           $scope.lastZoom = $scope.zoom;
-      }
+      };
 
 
       // location changed or maybe we got an init
@@ -249,7 +256,7 @@ angular.module('resumeApp')
           if ($scope.zoom < 4) {$scope.zcounts = sector.draw($scope.zlo, $scope.zhi, $scope.zoom);
           } else {
               // 4x4 or more
-              var zresult = []; var sectorscale = 4;
+              var sectorscale = 4;
               for (var logme = 4; logme < $scope.zoom; logme++) {sectorscale *= 4;}
 
               var initx = $scope.x; var inity = $scope.y;

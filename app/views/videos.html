@@ -1,5 +1,7 @@
 <div>
-<select title="Thumbnail size" ng-model="imageSize" ng-options="sizeChoice.name for sizeChoice in sizeChoices"></select>
+    <select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+    </select><br/>
+    <select title="Thumbnail size" ng-model="imageSize" ng-options="sizeChoice.name for sizeChoice in sizeChoices"></select>
 <select ng-model="perPage" ng-options="perValue.name for perValue in perValues" ng-change="fixPages()"></select>
 <button ng-click="updateLast()" ng-show="page()">Last {{perPage.value}}</button>
 {{soFarFrom}} to {{soFarTo}} out of {{total}}
@@ -7,7 +9,6 @@
 Thumbnails: <input type="checkbox" ng-model="showThumbs">
 Embedded videos: <input type="checkbox" ng-model="showEmbedded">
 <br/>
-<br>
 <scope ng-if="showThumbs" ng-repeat="video in videos track by video.id.videoId" title = "{{video.snippet.description}}">
     <img ng-src="{{video.snippet.thumbnails.default.url}}" alt = "{{video.snippet.description}}"
          height="{{imageSize.height}}" width="{{imageSize.width}}" style="float: left"
@@ -21,9 +22,9 @@ Embedded videos: <input type="checkbox" ng-model="showEmbedded">
 </scope>
 
 <div ng-if="showThumbs" ng-bind-html="trustedEmbedded">
-<scope ng-if="showEmbedded" ng-repeat="video in videos track by video.id.videoId" title = "{{video.snippet.description}}">
-    <div ng-data="trustedEmbeddedDefault" ng-bind-html="getTrustedEmbedded(video.id.videoId);trustedEmbeddedDefault" style="float: left" ng-show="showDefault()"</div>
-    <div ng-data="trustedEmbeddedHigh" ng-bind-html="trustedEmbeddedHigh" style="float: left" ng-show="showHigh()"</div>
-    <div ng-data="trustedEmbeddedMedium" ng-bind-html="trustedEmbeddedMedium" style="float: left" ng-show="showMedium()"</div>
-</scope>
+    <scope ng-if="showEmbedded" ng-repeat="video in videos track by video.id.videoId" title = "{{video.snippet.description}}">
+        <div ng-data="trustedEmbeddedDefault" ng-bind-html="getTrustedEmbedded(video.id.videoId);trustedEmbeddedDefault" style="float: left" ng-show="showDefault()"></div></div>
+        <div ng-data="trustedEmbeddedHigh" ng-bind-html="trustedEmbeddedHigh" style="float: left" ng-show="showHigh()"></div>
+        <div ng-data="trustedEmbeddedMedium" ng-bind-html="trustedEmbeddedMedium" style="float: left" ng-show="showMedium()"></div>
+    </scope>
 </div>

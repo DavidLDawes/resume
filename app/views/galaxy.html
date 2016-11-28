@@ -1,3 +1,5 @@
+<select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+</select>
 <div id="wrap">
     <div class="row marketing" id="left_col">
         <p>Location: X<input type="number" name="x" min="-1800000000" max="1800000000" step=1 ng-model="x" ng-change="locate()">

@@ -1,5 +1,7 @@
 'use strict';
 
+/*jslint node: true */
+/*jshint strict:false */
 /**
  * @ngdoc function
  * @name resumeApp.controller:ResumeCtrl
@@ -8,7 +10,7 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-    .controller('ResumeCtrl', ['links', '$scope', '$location', function (links, $scope, $location) {
+    .controller('ResumeCtrl', ['$scope', '$location', 'links', function ($scope, $location, links) {
 
         $scope.selectlink = links.links[links.indexFromView('Resume')];
         $scope.links = links.links;

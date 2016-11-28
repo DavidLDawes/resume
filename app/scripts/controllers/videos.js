@@ -1,5 +1,7 @@
 'use strict';
 
+/*jslint node: true */
+/*jshint strict:false */
 /**
  * @ngdoc function
  * @name resumeApp.controller:VideosCtrl
@@ -8,7 +10,14 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('VideosCtrl', ['$scope', '$document', '$http', '$sce', 'youtube', function ($scope, $document, $http, $sce, youtube) {
+  .controller('VideosCtrl', ['$scope', '$document', '$http', '$sce', '$location', 'youtube', 'links',
+      function ($scope, $document, $http, $sce, $location, youtube, links) {
+
+      $scope.selectlink = links.links[links.indexFromView('Tower')];
+      $scope.links = links.links;
+      $scope.go = function(link) {
+          if (link.view !== 'Tower') {$location.path( link.link );}
+      };
 
       // simple static data first
       // thumbnail sizes

@@ -1,5 +1,7 @@
 'use strict';
 
+/*jslint node: true */
+/*jshint strict:false */
 /**
  * @ngdoc function
  * @name resumeApp.controller:TowerdefenseCtrl
@@ -8,18 +10,26 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('TowerdefenseCtrl', ['$scope', '$interval', '$location', 'canvastower', 'equip', function ($scope, $interval, $location, canvastower, equip) {
+  .controller('TowerdefenseCtrl', ['$scope', '$interval', '$location', 'canvastower', 'equip', 'links',
+      function ($scope, $interval, $location, canvastower, equip, links) {
           var save, soldier, mySoldiers;
 
+          $scope.selectlink = links.links[links.indexFromView('Tower')];
+          $scope.links = links.links;
+          $scope.go = function(link) {
+              if (link.view !== 'Tower') {$location.path( link.link );}
+          };
+
           canvastower.init();
-          $scope.links = [
+
+          $scope.tlinks = [
               {'view':'Fight', 'link':'/'},
               {'view':'Generate', 'link':'/generate'},
               {'view':'Equip', 'link':'/equip'},
               {'view':'About', 'link':'/about'} ];
 
-          $scope.selectlink = $scope.links[0];
-          $scope.go = function(link) {
+          $scope.tselectlink = $scope.tlinks[0];
+          $scope.tgo = function(link) {
               if (link.view !== 'Fight') {
                   $location.path( link.link );
               }

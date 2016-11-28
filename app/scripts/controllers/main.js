@@ -3,6 +3,8 @@
 /*jslint node: true */
 /*jshint strict:false */
 
+/*jslint node: true */
+/*jshint strict:false */
 /**
  * @ngdoc function
  * @name resumeApp.controller:MainCtrl
@@ -11,7 +13,12 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('MainCtrl', ['$document', '$scope', 'ngDialog', function ($document, $scope, ngDialog) {
+  .controller('MainCtrl', ['$document', '$scope', '$location', 'ngDialog', 'links', function ($document, $scope, $location, ngDialog, links) {
+      $scope.selectlink = links.links[links.indexFromView('Main')];
+      $scope.links = links.links;
+      $scope.go = function(link) {
+          if (link.view !== 'Main') {$location.path( link.link );}
+      };
 
       $scope.hideModal = function () {
           ngDialog.close();

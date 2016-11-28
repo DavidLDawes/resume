@@ -1,61 +1,106 @@
-Dave's Angular Playground
+My Angular Playground
 Published November 2016
+<select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+</select>
+<h2 ng-click="toggleAbout()">About</h2>
+<span ng-if="showAbout" ng-click="toggleAbout()">
+    This page. Nothing dramatic, simple Angular stuff. Data model is a simple set of show* values and toggle* routines.
+    We use ng-if on it to show or hide things, and ng-click to invoke the toggle to turn things off and on.
+</span>
+<h2 ng-click="toggleCards()">Cards</h2>
+<span ng-if="showCards" ng-click="toggleCards()">
+    Cards stuff plays with a 2D sprite array, drawing them on the canvas. Does not do much, but it shows how
+    you can script display of cards at locations on the screen from buttons. Also uses canvas as an abstraction sorta,
+    which pays off in other pages too. See the Galaxy one, for example.
+</span>
 
-<h2>Cards</h2>
-Cards stuff plays with a 2D sprite array, drawing them on the canvas. Doesn't do much, but it shows how
-you can script display of cards at locations on the screen from buttons. Also uses canvas as an abstraction sorta,
-which pays off in other pages like:
-<h2>Galaxy</h2>
-Galaxy is a 3D galaxy simulation that plays with large scale ranges.
+<h2 ng-click="toggleContact()">Contact</h2>
+<span ng-if="showContact" ng-click="toggleContact()">
+    List of contact and social media info and links. Also a self portrait, me with hearing protection,
+    photo from the Capital Hill Block Party a few years back.</span>
+<h2 ng-click="toggleGalaxy()">Galaxy</h2>
+<span ng-if="showGalaxy" ng-click="toggleGalaxy()"><h4>HMTL5 Canvas 3D Galaxy simulation</h4>
+    The idea I worked out here is how to create a "generative" galaxy.<br/>
+    The generative algorithm is per sector, so convert any (x,y,z) to a sector by dividing by 100, 100 and 25
+    respectively, taking the integer or "floor" portion as the result. Given an integer triplet x,y,z sector, create a
+    string of them with spaces i.e. 0 0 0
+    Hash that string with the murmur3 hash <br/>
+    (cool point: encapsulated the murmur3 hash as an Angular service or factory,see app/scrtipts/services/murmur3hash.js)<br/>
+    use the bytes and bits in the results in a planned way as seeds for a pseudo-random number generator in a specific sequence.<br/>
+    Calculate the number then location of the brightest stars, then ditto for the next brightest, and so on down to dimmest stars for
+    the sector.<br/>
+    (another cool point: wrapped simple 31 bit pseudo-RNG as a service; nice to have: make it 64 bit)<br/>
+    Now use the list of stars and locations to draw the result out on the canvas.<br/>
+    The algorithms are pretty simple and fast in Javascript,  no reference to anything external is needed once we
+    load the Angular page. It is repeatable, so anybody running the calculation for a given sector will get the
+    exact same result: same number of stars in each class, same locations, etc. By basing it on fairly well seeded
+    RNG, the sectors have a large amount of variety and no obvious repeats or patterns appear.<br/>
+    <br/>
+    Zooms are by a factor of 4.<br/>
+    Default scale is 3 = 100x100 light years in x&y, zoom in to 2 and you get 25x25 LY, and down to 1 you get 6.25x6.25
+    light years.<br/>
+    Going the other direction, at 4 there are 4x4 sectors, 400x400 light years.<br/>
+    Zoomed out to 5 there are 4x4 sectors, 1,600x1,600 light years.<br/>
+    Going the other direction, at 6 there are 64x64 sectors, 6,400x6,400 light years.<br/>
+    Going the other direction, at 7 there are 256x256 sectors, 25,600x25,600 light years.<br/>
+    <br/>
+    Another cool point: as the scale is increased, the dimmer stars are no longer drawn. Since we generate the lists of
+    stars from brightest to dimmest, we can stop once we get to the dimmest we need to draw. Since we draw fewer as the
+    scale increases, the calculations get faster so it performs better than x-squared, which is what you normally
+    get from a 2D representation: 4x scale = 16x overhead.<br/>
+    <br/>
+    Nice to have: calculate where the rare blue giants are on a supersector basis at the start of the per sector algorithm.
+    Now when we get to the 1,024x1,024 supersector range we can skip from sector by sector (so that is only needed up to
+    256x256) and graph the whole 102,400 x 102,400 light year sector as a single panel, each sector is a pixel at most.<br/>
+    <br/>
+    At basic zoom (level 3, which is arbitrary) it shows a 100 light years x 100 light years x 25 light years "sector."
+    The overall galaxy has 1,800 x 900 x 80 sectors, all roughly the same average star distribution: no arms, voids,
+    clouds or nebulas. Just stars.<br/>
+    Used <a href="https://en.wikipedia.org/wiki/Stellar_classification">the wikipedia page on Stellar Classification</a> for the basic odds.<br/>
+    <br/>
+    It is an isometric projection (z is ignored, plot based on X & Y, so there is no perspective).<br/>
+    Buttons allow you to wander around by a sector at a time<br/>
+    <br/>
+    To get reasonable performance and appearance, dimmer classes of stars are only shown on the smallest scales.<br/>
+    At the highest scales, only the brightest (blue supergiants) are displayed.<br/>
+    <br/>
+    The Z axis controls allow you to select subsets of the sector by limiting the top and bottom Z values. Setting the
+    sliders close together allows for narrow slices. They start open wide - show from bottom to top.<br/>
+    <br/>
+    Nice to have ideas:<br/>
+    Add perspective<br/>
+    Add ability to rotate point-of-view away from the Z axis arbitrarily<br/>
+        Make canvas virtual, allow for "flying across canvas" simply by peridoically redrawing at a slight offset.<br/>
+</span>
 
-The idea I worked out here is how to create a "generative" galaxy.
-The generative algorithm is per sector, so convert any (x,y,z) to a sector by dividing by 100, 100 and 25
-respectively, taking the integer or "floor" portion as the result. Given an integer triplet x,y,z sector, create a
-string of them with spaces i.e. '0 0 0'
-Hash that string with the murmur3 hash (cool point: encapsulated the murmur3 hash as an Angular service or factory,
-see app/scrtipts/services)
-use the bytes and bits in the results in a planned way as seeds for a pseudo-random number generator.
-Calculate the number then location of the brightest stars, then next brightest, and so on down to dimmest stars for
-the sector. (another cool point: wrapped simple 31 bit pseudo-RNG as a service; nice to have: make it 64 bit)
-Now use the list of stars and locations to draw the result out on the canvas.
-The algorithms are pretty simple and fast in Javascript, so no reference to anything external is needed once we
-load the Angular page. It is repeatable, so anybody running the calculation for a given sector will get the
-exact same result: same number of stars in each class, same locations, etc. By basing it on fairly well seeded
-RNG, the sectors have a large amount of variety and no obvious repeats or patterns appear.
+<h2 ng-click="toggleMain()">Main</h2>
+<span ng-if="showMain" ng-click="toggleMain()">
+    Default and main view. Lists top level links to assorted pages with brief text describing what is on each.
+</span>
 
-Zooms are by a factor of 4.
-Default scale is 3 = 100x100 light years in x&y, zoom in to 2 and you get 25x25 LY, and down to 1 you get 6.25x6.25
-light years.
-Going the other direction, at 4 there are 4x4 sectors, 400x400 light years.
-Zoomed out to 5 there are 4x4 sectors, 1,600x1,600 light years.
-Going the other direction, at 6 there are 64x64 sectors, 6,400x6,400 light years.
-Going the other direction, at 7 there are 256x256 sectors, 25,600x25,600 light years.
+<h2 ng-click="toggleResume()">Resume</h2>
+<span ng-if="showResume" ng-click="toggleResume()">
+    Dumb if vaguely amusing experiment in dynamically customizing a version of my resume. <br/>
+    Mostly to show how to do it all in HTML except for a trivial data model defined in Angular JS.</span>
 
-Another cool point: as the scale is increased, the dimmer stars are no longer drawn. Since we generate the lists of
-stars from brightest to dimmest, we can stop once we get to the dimmest we need to draw. Since we draw fewer as the
-scale increases, the calculations get faster so it performs better than x-squared, which is what you normally
-get from a 2D representation: 4x scale = 16x overhead.
+<h2 ng-click="toggleTower()">Tower Defense</h2>
+<span ng-if="showTower" ng-click="toggleTower()">
+    Simplistic Tower Defense:
+    click a button and 2 randomly generated opponents march towards each other then fight.<br/>
+    Stupidly simple graphic representation, broke old stick man to introduce weapons but so far it
+    does not quite work.>br/>
+    Only real point of interest hear (other than starting to work out how to use a canvas in AngularJS)
+    is that I used Dungeons and Dragons v2 physical characteristics, weapons and armor & adjustments to
+    generae the random characters, then use D&D v2 to-hit calculations (taking note of
+    Str, Dex & weapon adjustments) and damage (Str & weapon vs. defenders Const. adjustment & random HP roll).
+</span>
 
-
-Nice to have: calculate where the rare blue giants are on a supersector basis at the start of the per sector algorithm.
-Now when we get to the 1,024x1,024 supersector range we can skip from sector by sector (so that is only needed up to
-256x256) and graph the whole 102,400 x 102,400 light year sector as a single panel, each sector is a pixel at most.
-
-At basic zoom (level 3, which is arbitrary) it shows a 100 light years x 100 light years x 25 light years "sector."
-The overall galaxy has 1,800 x 900 x 80 sectors, all roughly the same average star distribution: no arms, voids,
-clouds or nebulas. Just stars.
-Used <a href="https://en.wikipedia.org/wiki/Stellar_classification">the wikipedia page on Stellar Classification</a> for the basic odds.
-
-It is an isometric projection (z is ignored, plot based on X & Y, so there's no perspective).
-Buttons allow you to wander around by a sector at a time
-
-To get reasonable performance and appearance, dimmer classes of stars are only shown on the smallest scales.
-At the highest scales, only the brightest (blue supergiants) are displayed.
-
-The Z axis controls allow you to select subsets of the sector by limiting the top and bottom Z values. Setting the
-sliders close together allows for narrow slices. They start open wide - show from bottom to top.
-
-Nice to have ideas:
-Add perspective
-Add ability to rotate point-of-view aways from Z axis arbitrarily
-Make canves virtual, allow for "flying across canvas" simply by peridoically redrawing at a slight offset.
+<h2 ng-click="toggleVideos()">Vera Videos</h2>
+<span ng-if="showVideos" ng-click="toggleVideos()">
+    Use AngularJS $http and promises to fetch youtube video info in a service, show thumbnails using the results.
+    On clicking a thumbnail, bring that video into the embedded youtube player ready to be played.<br/>
+    Code to do an array of playable controls used to work, broke somewhere along the way to porting it here.<br/>
+    Mildly interesting use of controls to update display parameters.<br/>
+    It also uses the app ID stuff, requiring use of Google's API control panel to enable this particular stat access,
+    with a limit of 50,000 free queries a day or something like that.
+</span>

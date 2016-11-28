@@ -1,5 +1,7 @@
-<br />Generate troops that are {{selectpriority.score}}, with {{selectequip.type}} equipment<br />
 <select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+</select>
+<br />Generate troops that are {{selectpriority.score}}, with {{selectequip.type}} equipment<br />
+<select ng-model="tselectlink" ng-options="tlink.view for tlink in tlinks" ng-change="tgo(selectlink)">
 </select><br />
 <ul>
     <li ng-repeat='mySoldier in  mySoldiers'>Str {{mySoldier}}.scores[0] Dex {{mySoldier}}.scores[1] Con {{mySoldier}}.scores[2]<br />
