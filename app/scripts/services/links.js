@@ -20,6 +20,7 @@ angular.module('resumeApp')
         {'view':'Galaxy', 'link':'/galaxy'},
         {'view':'Main', 'link':'/'},
         {'view':'Resume', 'link':'/resume'},
+        {'view':'Robots', 'link':'/robots'},
         {'view':'Tower', 'link':'/towerdefense'},
         {'view':'Twitter', 'link':'', 'url':'https://twitter.com/DavidLDawes'},
         {'view':'Videos', 'link':'/videos'},

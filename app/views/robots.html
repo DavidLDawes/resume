@@ -1,0 +1,36 @@
+<html>
+<head>
+    <meta name=Title content="David L. Dawes Web Site for demos and resume etc.">
+    <meta name=Keywords content="">
+    <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <title>David L. Dawes Web Site</title>
+</head>
+<header>
+    <div align="center">
+        <select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)" style="float: left">
+        </select>
+        <span style="font-size:18.0pt">
+            Dave's Robots
+        </span>
+        <select ng-model="selectrobot" ng-options="robot.view for robot in robotsarray" ng-change="choose(selectrobot)" style="float: right">
+        </select>
+    </div>
+</header>
+<body lang=EN-US link=blue vlink=purple><br/>
+    <div class="jumbotron text-center">
+        <span style="font-size:20.0pt">
+            <h3 class=Address2 align=center>{{type}}: {{rname}}</h3>
+        </span>
+        <scope ng-repeat="descr in rdesc track by $index">
+            {{descr}}<br/>
+        </scope>
+        <img id="imgrobot" src="{{rimg}}" alt="{{rdesc[0]}}" height="{{riy}}" width="{{rix}}" align="left"><br />
+        <scope ng-repeat="longline in longer track by $index">
+            {{longline}}<br/>
+        </scope>
+    </div>
+    <scope ng-if="showVideo()" ng-repeat="video in videos track by video.id" title = "{{video.name}}">
+        <div ng-data="trustedEmbedded[video.id]" ng-bind-html="trustedEmbedded[video.id]" style="float: left" ng-show="showDefault()"></div>
+    </scope>
+</body>
+</html>

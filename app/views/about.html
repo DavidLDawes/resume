@@ -2,10 +2,34 @@ My Angular Playground
 Published November 2016
 <select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
 </select>
+<h2 ng-click="toggleAngular()">Angular Design Evolution</h2>
+<span ng-if="showAngular" ng-click="toggleAngular()">
+    As the different bits of this app were added yo was used to generate each route (yo angular:route name).
+    The route generator adds the name as the url for the new view and creates the view name.html and controller
+    name.js modules. The first cut of the new page is added here, but things usually evolve.<br/><br/>
+    As the page gets nailed down, any large amounts of data get moved to a factory. As an example, the robots page
+    had an array defining the different robot properties - text, images, etc. This was moved to a robot.js factory
+    (yo angular:factory robot) and the factory is now injected into the ronots.js controller.<br/><br/>
+    A more complex evolution happenned with the approach to graphics and using an HTML canvas. The first app
+    (an older version of the Tower Defense) just used the canvas directly. When I started working on the Galaxy page
+    I created a service or factory wrapper around a canvas and injected that, avoiding most of the messy canvas
+    code in the controller.<br/><br/>
+    The Galaxy code for working out the contents of a sector had already moved to a factory as sector.js. I found that
+    there was a fair amount of graphic specific code that was star/galay specific, so I moved that to a separate service
+    or fatory layer that uses the canvas directly, removing the star/graphic specific code from the controller and
+    locating it here.
+</span>
 <h2 ng-click="toggleAbout()">About</h2>
 <span ng-if="showAbout" ng-click="toggleAbout()">
     This page. Nothing dramatic, simple Angular stuff. Data model is a simple set of show* values and toggle* routines.
-    We use ng-if on it to show or hide things, and ng-click to invoke the toggle to turn things off and on.
+    We use ng-if on it to show or hide things, and ng-click to invoke the toggle to turn things off and on.<br/>
+    It is a litle instructive to compare this with the approach used in robots. The approach here is simple and mostly
+    implemented in HTML, with JS containing a definition of the various things you can show and a toggle method for each.<br/>
+    In robots we moved all of the details about each sort of robot or kinetic art into a separte object in an array hosted
+    in a robot factory. The text is stored in the model as an array of paragraphs, and the HTML uses ng-repeat to get the
+    textual data out of the arrays and displayed properly.<br/>
+    Overall I am more fond of the service/factory approach once the data starts getting complex, it keeps the controller .js
+    and the view .html cleaner, moving much if the data and crud to the factory.
 </span>
 <h2 ng-click="toggleCards()">Cards</h2>
 <span ng-if="showCards" ng-click="toggleCards()">

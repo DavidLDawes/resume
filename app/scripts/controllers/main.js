@@ -24,36 +24,6 @@ angular.module('resumeApp')
           ngDialog.close();
       };
 
-      $scope.robots = [
-          {
-              'name':'Guitar Robot',
-              'img': 'images/if6were9.jpg',
-              'ix':460 , 'iy': 670,
-              'description':'MoPop If VI Were XI installation by Trimpin.'
-          },
-          {
-              'name':'Der Ring 3',
-              'img': 'images/orbit.jpg',
-              'ix':706 , 'iy': 466,
-              'description':'Kinetic Sculpture installation by Trimpin.'
-          },
-          {
-              'name':'Real Time Machinery',
-              'img': 'images/twood.jpeg',
-              'ix':448 , 'iy': 271,
-              'description':'Real time control algorithms for routers, robots, carving machines, and 5+ axes of simpltaneous control.'
-          }
-      ];
-      $scope.selectrobot = $scope.robots[0];
-      $scope.choose = function(robot) {
-          $scope.rname = robot.name;
-          $scope.rdesc = robot.description;
-          $scope.rimg = robot.img;
-          $scope.rix = robot.ix;
-          $scope.riy = robot.iy;
-      };
-      $scope.choose($scope.selectrobot);
-
       $scope.clickToOpen = function () {
           ngDialog.open({
               template: '<div class="ng-modal-overlay" ng-click="hideModal()">' +

@@ -64,6 +64,11 @@ angular
         controller: 'CardsCtrl',
         controllerAs: 'cards'
       })
+      .when('/robots', {
+        templateUrl: 'views/robots.html',
+        controller: 'RobotsCtrl',
+        controllerAs: 'robots'
+      })
       .otherwise({
         redirectTo: '/'
       });
