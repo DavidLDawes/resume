@@ -8,7 +8,7 @@
  * Factory in the resumeApp.
  */
 angular.module('resumeApp')
-  .factory('links', ['$window', function ($window) {
+  .factory('links', ['$window', '$location', function ($window, $location) {
     var linkobj = {
 
         links: [
@@ -19,6 +19,7 @@ angular.module('resumeApp')
         {'view':'Facebook', 'link':'', 'url':'https://www.facebook.com/DavidLDawes'},
         {'view':'Galaxy', 'link':'/galaxy'},
         {'view':'Main', 'link':'/'},
+        {'view':'Products', 'link':'/products'},
         {'view':'Resume', 'link':'/resume'},
         {'view':'Robots', 'link':'/robots'},
         {'view':'Tower', 'link':'/towerdefense'},
@@ -37,12 +38,10 @@ angular.module('resumeApp')
         currentlink: 0,
 
       go: function(link) {
-          if (link.view != links[currentlink].view) {
-              if (links[currentlink].link.length > 0) {
-                  $location.path( link.link );
-              } else {
-                  $window.open(link.url);
-              }
+          if (link.link.length > 0) {
+              $location.path( link.link );
+          } else {
+              $window.location.href =link.url;
           }
       }
     };

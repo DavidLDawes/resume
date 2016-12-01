@@ -10,11 +10,14 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('CardsCtrl', ['$scope', '$location', 'cardsprites', 'links', function ($scope, $location, cardsprites, links) {
+  .controller('CardsCtrl', ['$scope', '$location', '$document', 'cardsprites', 'links', function ($scope, $location, $document, cardsprites, links) {
+      $document[0].title = 'Experimental: 2D sprite panel and Angular factory wrapper to draw them on a canvas.';
       $scope.selectlink = links.links[links.indexFromView('Cards')];
       $scope.links = links.links;
       $scope.go = function(link) {
-          if (link.view !== 'Cards') {$location.path( link.link );}
+          if (link.view !== 'Cards') {
+              links.go(link);
+          }
       };
 
       $scope.cardSpritesPanel = new Image();

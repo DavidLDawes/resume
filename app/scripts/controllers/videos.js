@@ -12,11 +12,14 @@
 angular.module('resumeApp')
   .controller('VideosCtrl', ['$scope', '$document', '$http', '$sce', '$location', 'youtube', 'links',
       function ($scope, $document, $http, $sce, $location, youtube, links) {
+          $document[0].title = 'Vera Videos YouTube Query Experiment';
 
-      $scope.selectlink = links.links[links.indexFromView('Tower')];
+          $scope.selectlink = links.links[links.indexFromView('Tower')];
       $scope.links = links.links;
       $scope.go = function(link) {
-          if (link.view !== 'Tower') {$location.path( link.link );}
+          if (link.view !== 'Tower') {
+              links.go(link);
+          }
       };
 
       // simple static data first

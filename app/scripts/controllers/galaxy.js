@@ -10,11 +10,14 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('GalaxyCtrl', ['$scope', '$location', 'sector', 'drawstars', 'links', function($scope, $location, sector, drawstars, links) {
+  .controller('GalaxyCtrl', ['$scope', '$location', '$document', 'sector', 'drawstars', 'links', function($scope, $location, $document, sector, drawstars, links) {
+      $document[0].title = '3D Galaxy Simulation with zoom, 200Bn stars, 180,000x120,000x40,000 light years';
       $scope.selectlink = links.links[links.indexFromView('Galaxy')];
       $scope.links = links.links;
       $scope.go = function(link) {
-          if (link.view !== 'Galaxy') {$location.path( link.link );}
+          if (link.view !== 'Galaxy') {
+              links.go(link);
+          }
       };
 
       // use this from the service, not exposed directly on factory

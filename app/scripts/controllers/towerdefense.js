@@ -10,14 +10,17 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('TowerdefenseCtrl', ['$scope', '$interval', '$location', 'canvastower', 'equip', 'links',
-      function ($scope, $interval, $location, canvastower, equip, links) {
+  .controller('TowerdefenseCtrl', ['$scope', '$interval', '$location', '$document', 'canvastower', 'equip', 'links',
+      function ($scope, $interval, $location, $document, canvastower, equip, links) {
+          $document[0].title = 'Simple broken trivial tower defense game.';
           var save, soldier, mySoldiers;
 
           $scope.selectlink = links.links[links.indexFromView('Tower')];
           $scope.links = links.links;
           $scope.go = function(link) {
-              if (link.view !== 'Tower') {$location.path( link.link );}
+              if (link.view !== 'Tower') {
+                  links.go(link);
+              }
           };
 
           canvastower.init();

@@ -11,10 +11,14 @@
  */
 angular.module('resumeApp')
   .controller('ContactCtrl', ['$scope', '$document', '$location', 'links', function ($scope, $document, $location, links) {
+      $document[0].title = 'David Dawes Contact Info and Photo';
+
       $scope.selectlink = links.links[links.indexFromView('Contact')];
       $scope.links = links.links;
       $scope.go = function(link) {
-          if (link.view !== 'Contact') {$location.path( link.link );}
+          if (link.view !== 'Contact') {
+              links.go(link);
+          }
       };
 
       $scope.name = "David L. Dawes";

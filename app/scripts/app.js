@@ -69,6 +69,11 @@ angular
         controller: 'RobotsCtrl',
         controllerAs: 'robots'
       })
+      .when('/products', {
+        templateUrl: 'views/products.html',
+        controller: 'ProductsCtrl',
+        controllerAs: 'products'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -10,12 +10,15 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-    .controller('ResumeCtrl', ['$scope', '$location', 'links', function ($scope, $location, links) {
+    .controller('ResumeCtrl', ['$scope', '$location', '$document', 'links', function ($scope, $location, $document, links) {
+        $document[0].title = 'Experimental version of David Dawes\' resume with Angular check boxes controlling bits of the text.';
 
         $scope.selectlink = links.links[links.indexFromView('Resume')];
         $scope.links = links.links;
         $scope.go = function(link) {
-            if (link.view !== 'Resume') {$location.path( link.link );}
+            if (link.view !== 'Resume') {
+                links.go(link);
+            }
         };
         $scope.show_manage = true;
         $scope.show_process = true;

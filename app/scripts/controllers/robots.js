@@ -8,11 +8,14 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('RobotsCtrl', ['$scope', '$location', '$sce', 'links', 'robot', function ($scope, $location, $sce, links, robot) {
+  .controller('RobotsCtrl', ['$scope', '$location', '$sce', '$document', 'links', 'robot', function ($scope, $location, $sce, $document, links, robot) {
+      $document[0].title = 'Robots and Kinetic Art That David Dawes Worked On';
       $scope.selectlink = links.links[links.indexFromView('Robots')];
       $scope.links = links.links;
       $scope.go = function(link) {
-          if (link.view !== 'Robots') {$location.path( link.link );}
+          if (link.view !== 'Robots') {
+              links.go(link);
+          }
       };
 
       $scope.robotsarray = robot.getRobots();

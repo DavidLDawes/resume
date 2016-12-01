@@ -11,7 +11,8 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-    .controller('AboutCtrl', ['$scope', '$location', 'links', function ($scope, $location, links) {
+    .controller('AboutCtrl', ['$scope', '$location', '$document', 'links', function ($scope, $location, $document, links) {
+        $document[0].title = 'About this web site and it\'s pages';
 
         $scope.showAngular = false;
         $scope.toggleAngular = function() {
@@ -62,7 +63,7 @@ angular.module('resumeApp')
         $scope.links = links.links;
         $scope.go = function(link) {
             if (link.view !== 'About') {
-                $location.path(link.link);
+                links.go(link);
             }
         };
 
