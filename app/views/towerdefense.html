@@ -1,0 +1,21 @@
+<select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+</select>
+<br />Generate troops that are {{selectpriority.score}}, with {{selectequip.type}} equipment<br />
+<select ng-model="tselectlink" ng-options="tlink.view for tlink in tlinks" ng-change="tgo(tselectlink)">
+</select><br />
+<ul>
+    <li ng-repeat='mySoldier in  mySoldiers'>Str {{mySoldier}}.scores[0] Dex {{mySoldier}}.scores[1] Con {{mySoldier}}.scores[2]<br />
+        HP {{mySoldier}}.hp out of max {{mySoldier}}.maxHp HP, AC {{mySoldier}}.ac<br />
+        Weapon {{mySoldier}}.weapon.type and armor {{mySoldier}}.armor.type</li>
+</ul>
+<br />
+<canvas id="battleCanvas" width="640" height="200" style="border:1px solid #000000;"></canvas><br />
+<img ng-show="0" id="self" width="220" height="277" src="images/self.jpg" alt="self">
+<img ng-show="0" id="shortsword" width="40" height="80" src="images/shortSword.png">
+<img ng-show="0" id="sword" width="30" height="100" src="images/longSword.png">
+<img ng-show="0" id="dagger" width="20" height="60" src="images/dagger.png">
+<img ng-show="0" id="blank" width="20" height="60" src="images/blank.png">
+<img ng-show="0" id="twohandedsword" width="100" height="160" src="images/twohandedSword.jpg">
+<br />Most recent fight:{{fight}}<br />
+<button ng-click="turn()">Generate new troops</button>
+</div>

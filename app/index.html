@@ -1,53 +1,45 @@
-<!doctype html>
+    <!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- endbower -->
-    <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width">
+      <meta name=Title content="Dave's Playground">
+      <meta name="description" content="David Dawes resume, contact info, robots and products, experiments and samples">
+      <meta name=Keywords content="David L. Dawes,playground,resume">
+      <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+      <title>Dave's Playground</title>
+      <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+      <!-- build:css(.) styles/vendor.css -->
+      <!-- bower:css -->
+      <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
+      <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
+      <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+      <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
+      <!-- endbower -->
+      <!-- endbuild -->
+      <!-- build:css(.tmp) styles/main.css -->
+      <link rel="stylesheet" href="styles/main.css">
+      <!-- endbuild -->
+
   </head>
   <body ng-app="resumeApp">
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
-    <div class="header">
-      <div class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="collapse navbar-collapse" id="js-navbar-collapse" align="center">
-
-            <span class="nav navbar-nav">
-              <a href="#/">Home</a></span>
-            <span class="nav navbar-nav">
-              <a ng-href="#/about">About</a></span>
-            <span class="nav navbar-nav">
-              <a ng-href="#contact/">Contact</a></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="container">
-    <div ng-view=""></div>
+    <div ng-view="main"></div>
     </div>
 
     <div class="footer">
       <div class="container">
-        <p>Dynamic Resume by David L. Dawes, demonstrate some simple angular sutff.
-          <a href="http://yeoman.io/learning/">Scaffolded with Yo</a>
-          <a href="https://github.com/yeoman/generator-angular">Angular Generator.</a></p>
+        <p>Dave's playground by David L. Dawes, demonstrate some simple angular sutff.
+          <a href="http://yeoman.io/learning/">Scaffolded/generated with Yo</a>
+          <a href="https://github.com/yeoman/generator-angular">Angular.</a></p>
       </div>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -56,7 +48,7 @@
        r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
        }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
-       ga('create', 'UA-XXXXX-X');
+       ga('create', 'UA-47900245-5');
        ga('send', 'pageview');
     </script>
 
@@ -72,6 +64,8 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/ngDialog/js/ngDialog.js"></script>
+    <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -80,6 +74,29 @@
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/contact.js"></script>
+        <script src="scripts/services/canvas.js"></script>
+        <script src="scripts/services/murmurhash3.js"></script>
+        <script src="scripts/services/randomseed.js"></script>
+        <script src="scripts/services/sector.js"></script>
+        <script src="scripts/controllers/galaxy.js"></script>
+        <script src="scripts/controllers/resume.js"></script>
+        <script src="scripts/controllers/videos.js"></script>
+        <script src="scripts/services/auth.js"></script>
+        <script src="scripts/services/youtube.js"></script>
+        <script src="scripts/controllers/towerdefense.js"></script>
+        <script src="scripts/services/canvastower.js"></script>
+        <script src="scripts/services/drawstars.js"></script>
+        <script src="scripts/services/equip.js"></script>
+        <script src="scripts/services/cardsprites.js"></script>
+        <script src="scripts/controllers/cards.js"></script>
+        <script src="scripts/services/links.js"></script>
+        <script src="scripts/controllers/robots.js"></script>
+        <script src="scripts/services/robot.js"></script>
+        <script src="scripts/controllers/products.js"></script>
+        <script src="scripts/services/product.js"></script>
         <!-- endbuild -->
-</body>
+    <link rel="stylesheet" href="lib/ng-dialog/css/ngDialog.min.css">
+    <link rel="stylesheet" href="lib/ng-dialog/css/ngDialog-theme-default.min.css">
+
+  </body>
 </html>

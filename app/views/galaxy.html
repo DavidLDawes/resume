@@ -1,0 +1,76 @@
+<select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)">
+</select>
+<div id="wrap">
+    <div class="row marketing" id="left_col">
+        <p>Location: X<input type="number" name="x" min="-1800000000" max="1800000000" step=1 ng-model="x" ng-change="locate()">
+            Y<input type="number" name="y" min="-1200000000" max="1200000000" step=1 ng-model="y" ng-change="locate()">
+            Z<input type="number" name="z" min="-40000000" max="40000000" step=1 ng-model="z" ng-change="locate()">
+        </p>
+        <canvas id="starfield" width="640" height="512"></canvas>
+    </div>
+    <div id="right_col" class="row_marketing">
+        Z Hi<input title="Z hi" type="range" orient="vertical" ng-model="zhi" name="Max Z"
+                   min="0" max="25000" step="250" ng-change="zhifilter()">
+        Z Lo<input title="Z lo" type="range" orient="vertical" ng-model="zlo" name="Min Z"
+                   min="0" max="25000" step="250" ng-change="zlofilter()">
+        Zoom<input title="Zoom" type="range" orient="vertical" ng-model="zoom" name="Zoom"
+                   min="1" max="7" step="1" ng-change="rezoom()">{{zoom}}
+        <p>
+            {{}}, {{}}
+            <button ng-click="leftward()">Left</button><button ng-click="rightward()">Right</button>
+            <button ng-click="upward()">Up</button><button ng-click="downward()">Down</button>
+            <button ng-click="inward()">In</button><button ng-click="outward()">Out</button>
+            Hash {{hash}}
+        </p>
+    </div>
+</div>
+<div>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:17%">
+        <tr>
+            <th>Star Type</th>
+            <th align="right">Number of Stars</th>
+            <th align="right">Number of Stars In Z Range</th>
+        </tr>
+        <tr style="width:10%" align="right">
+            <td align="center">O</td>
+            <td>{{starsize[0]}}</td>
+            <td>{{zcounts[0]}}</td>
+        </tr>
+        <tr align="right">
+            <td align="center">B</td>
+            <td>{{starsize[1]}}</td>
+            <td>{{zcounts[1]}}</td>
+        </tr>
+        <tr align="right">
+            <td align="center">A</td>
+            <td>{{starsize[2]}}</td>
+            <td>{{zcounts[2]}}</td>
+        </tr>
+        <tr align="right">
+            <td align="center">F</td>
+            <td>{{starsize[3]}}</td>
+            <td>{{zcounts[3]}}</td>
+        </tr>
+        <tr align="right">
+            <td align="center">G</td>
+            <td>{{starsize[4]}}</td>
+            <td>{{zcounts[4]}}</td>
+        </tr>
+        <tr align="right">
+            <td align="center">K</td>
+            <td>{{starsize[5]}}</td>
+            <td>{{zcounts[5]}}</td>
+        </tr>
+        <tr align="right">
+            <td align="center">M</td>
+            <td>{{starsize[6]}}</td>
+            <td>{{zcounts[6]}}</td>
+        </tr>
+    </table>
+    </p>
+</div>

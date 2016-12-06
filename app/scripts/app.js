@@ -19,7 +19,8 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'ngDialog'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -37,6 +38,41 @@ angular
         templateUrl: 'views/contact.html',
         controller: 'ContactCtrl',
         controllerAs: 'contact'
+      })
+      .when('/galaxy', {
+        templateUrl: 'views/galaxy.html',
+        controller: 'GalaxyCtrl',
+        controllerAs: 'galaxy'
+      })
+      .when('/resume', {
+        templateUrl: 'views/resume.html',
+        controller: 'ResumeCtrl',
+        controllerAs: 'resume'
+      })
+      .when('/videos', {
+        templateUrl: 'views/videos.html',
+        controller: 'VideosCtrl',
+        controllerAs: 'videos'
+      })
+      .when('/towerdefense', {
+        templateUrl: 'views/towerdefense.html',
+        controller: 'TowerdefenseCtrl',
+        controllerAs: 'towerdefense'
+      })
+      .when('/cards', {
+        templateUrl: 'views/cards.html',
+        controller: 'CardsCtrl',
+        controllerAs: 'cards'
+      })
+      .when('/robots', {
+        templateUrl: 'views/robots.html',
+        controller: 'RobotsCtrl',
+        controllerAs: 'robots'
+      })
+      .when('/products', {
+        templateUrl: 'views/products.html',
+        controller: 'ProductsCtrl',
+        controllerAs: 'products'
       })
       .otherwise({
         redirectTo: '/'

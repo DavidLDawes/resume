@@ -1,5 +1,7 @@
 'use strict';
 
+/*jslint node: true */
+/*jshint strict:false */
 /**
  * @ngdoc function
  * @name resumeApp.controller:ContactCtrl
@@ -8,7 +10,17 @@
  * Controller of the resumeApp
  */
 angular.module('resumeApp')
-  .controller('ContactCtrl', ['$scope', '$document', function ($scope, $document) {
+  .controller('ContactCtrl', ['$scope', '$document', '$location', 'links', function ($scope, $document, $location, links) {
+      $document[0].title = 'David Dawes Contact Info and Photo';
+
+      $scope.selectlink = links.links[links.indexFromView('Contact')];
+      $scope.links = links.links;
+      $scope.go = function(link) {
+          if (link.view !== 'Contact') {
+              links.go(link);
+          }
+      };
+
       $scope.name = "David L. Dawes";
       $scope.address1 = "18924 72nd Ct. NE";
       $scope.address2 = "Kenmore WA 98028";

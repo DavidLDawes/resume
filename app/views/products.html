@@ -1,0 +1,25 @@
+<html>
+    <header>
+        <div align="center">
+            <select ng-model="selectlink" ng-options="link.view for link in links" ng-change="go(selectlink)" style="float: left">
+            </select>
+            <span style="font-size:18.0pt">
+                Dave's Products
+            </span>
+            <select ng-model="selectproduct" ng-options="product.view for product in productsarray" ng-change="choose(selectproduct)" style="float: right">
+            </select>
+        </div>
+    </header>
+    <body lang=EN-US link=blue vlink=purple><br/>
+        <div class="jumbotron text-center">
+                <span style="font-size:20.0pt" class=Address2 align=center>{{rname}}, {{type}}</span><br/>
+            <scope ng-repeat="descr in rdesc track by $index">
+                {{descr}}<br/>
+            </scope>
+            <img id="imgproduct" src="{{rimg}}" alt="{{rdesc[0]}}" height="{{riy}}" width="{{rix}}" align="left"><br />
+            <scope ng-repeat="longline in longer track by $index">
+                {{longline}}<br/>
+            </scope>
+        </div>
+    </body>
+</html>
