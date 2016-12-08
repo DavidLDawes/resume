@@ -38,7 +38,7 @@ angular.module('resumeApp')
               'The EXTRA! product line ran as a terminate-stay-resident or TSR app. After loading it, you continued using your ' +
               'PC normally and hit a "hot-key" sequence to interupt your DOS app and bring up the terminal emulation interface.',
               'To make this work we turned MS-DOS into a multi-tasking operating system by intercepting DOS access and took over ' +
-              'the timer interrupt too so that we could provess communications tasks in the background. To keep memory consumption ' +
+              'the timer interrupt too so that we could process communications tasks in the background. To keep memory consumption ' +
               'low on the DOS systems with their 640KB memory limit, we engineered EXTRA! to use the High Memory Area or HMA just ' +
               'above 1024MB on PC-AT (80286 based) systems, and if the system had EMS then we moved up to 96KB of our application ' +
               'into EMS memory, keeping our footprint down to 12KB. This was an amazing accompishment for a full featured emulator ' +
