@@ -11,7 +11,7 @@
  */
 angular.module('resumeApp')
   .controller('ContactCtrl', ['$scope', '$document', '$location', 'links', function ($scope, $document, $location, links) {
-      $document[0].title = 'David Dawes Contact Info and Photo';
+      $document[0].title = 'Gregory Greer Contact Info and Photo';
 
       $scope.selectlink = links.links[links.indexFromView('Contact')];
       $scope.links = links.links;
@@ -21,11 +21,11 @@ angular.module('resumeApp')
           }
       };
 
-      $scope.name = "David L. Dawes";
-      $scope.address1 = "18924 72nd Ct. NE";
-      $scope.address2 = "Kenmore WA 98028";
-      $scope.email = "davidlymandawes@yahoo.com";
-      $scope.phone = "(206)271-7382";
+      $scope.name = "Gregory S. Greer";
+      $scope.address1 = "1303 201st St SW";
+      $scope.address2 = "Lynnwood, WA 98036";
+      $scope.email = "GregoryGreer@yahoo.com";
+      $scope.phone = "(425)835-0077";
 
       $scope.address = $scope.name + "\n" +
           $scope.address1 + "\n" +
