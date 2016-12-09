@@ -42,7 +42,8 @@ git clone https://github.com/DavidLDawes/resume.git
 ## Building
 Now that the code is in place and the prerequisites are in place, 
 it's time to install and build the app. Change into the resume directory that
-the git clone command created and :
+the git clone command created and
+
     npm install
     bower install
     npm update
@@ -63,13 +64,16 @@ Since the source code I've checked in does not specify the versions to use, I
 assume installing other components got us to our current (somewhat out of date)  set.
 
 My jshint was out of date too:
+    
     npm install jshint@latest -g
 
 #####Steps taken on a Windows PC based on [issue #2:](https://github.com/DavidLDawes/resume/issues/2)
 Update minimatch to avoid RegExp denial of service:
+    
     npm install minimatch@latest
 
 Update graceful-fs to avoid failing on certain node versions
+    
     npm install graceful-fs@latest -g
 
 There is a WARN about node-uuid beibng deprecated. I couldn't seem to find it to remove it, but
@@ -79,18 +83,14 @@ I installed uuid anyway:
 On different systems I had slightly different problems with older versions, so as I say I assume
 it is affected by what you have already loaded.
 
-## grunt tasks
+## Build: grunt
 We use grunt to build, test and serve. 
-grunt
-grunt serve
 
+    grunt
+    grunt test
+    grunt serve
+    grunt clean test serve
 
-Requires nodejs, usual npm preamble
-npm install -g bower grunt
-## Build & development
-
-Run `grunt` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma
+The serve version brings up the browser and auto-rebuilds & re-loads when you change
+ source files.
+ 
