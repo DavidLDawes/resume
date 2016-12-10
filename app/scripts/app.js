@@ -74,6 +74,16 @@ angular
         controller: 'ProductsCtrl',
         controllerAs: 'products'
       })
+      .when('/privacy', {
+        templateUrl: 'views/privacy.html',
+        controller: 'PrivacyCtrl',
+        controllerAs: 'privacy'
+      })
+      .when('/terms', {
+        templateUrl: 'views/terms.html',
+        controller: 'TermsCtrl',
+        controllerAs: 'terms'
+      })
       .otherwise({
         redirectTo: '/'
       });
