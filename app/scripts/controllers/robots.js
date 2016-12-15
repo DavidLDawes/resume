@@ -9,7 +9,7 @@
  */
 angular.module('resumeApp')
   .controller('RobotsCtrl', ['$scope', '$location', '$sce', '$document', 'links', 'robot', function ($scope, $location, $sce, $document, links, robot) {
-      $document[0].title = 'Robots and Kinetic Art That David Dawes Worked On';
+      $document[0].title = 'Robots That Gregory Greer Worked On';
       $scope.selectlink = links.links[links.indexFromView('Robots')];
       $scope.links = links.links;
       $scope.go = function(link) {

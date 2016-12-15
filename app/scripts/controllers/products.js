@@ -9,7 +9,7 @@
  */
 angular.module('resumeApp')
   .controller('ProductsCtrl', ['$scope', '$location', '$sce', '$document', 'links', 'product', function ($scope, $location, $sce, $document, links, product) {
-      $document[0].title = 'Products That David Dawes Worked On';
+      $document[0].title = 'Products That Gregory Greer Worked On';
       $scope.selectlink = links.links[links.indexFromView('Products')];
       $scope.links = links.links;
       $scope.go = function(link) {
