@@ -84,6 +84,16 @@ angular
         controller: 'TermsCtrl',
         controllerAs: 'terms'
       })
+      .when('/caprivacy', {
+        templateUrl: 'views/caprivacy.html',
+        controller: 'CaprivacyCtrl',
+        controllerAs: 'caprivacy'
+      })
+      .when('/caterms', {
+        templateUrl: 'views/caterms.html',
+        controller: 'CatermsCtrl',
+        controllerAs: 'caterms'
+      })
       .otherwise({
         redirectTo: '/'
       });
