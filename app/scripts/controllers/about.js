@@ -1,5 +1,4 @@
 /*jslint node: true */
-/*jshint strict:false */
 /*global angular */
 
 /**

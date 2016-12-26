@@ -1,5 +1,4 @@
 /*jslint node: true */
-/*jshint strict:false */
 /*global angular */
 /**
  * @ngdoc function
@@ -10,8 +9,8 @@
  */
 angular.module('resumeApp')
     .controller('ContactCtrl',
-                ['$scope', '$document', '$location', 'links', 'personal',
-                 function ($scope, $document, $location, links, personal) {
+        ['$scope', '$document', '$location', 'links', 'personal',
+            function ($scope, $document, $location, links, personal) {
     
                 'use strict';
                 $document[0].title = 'David Dawes Contact Info and Photo';
@@ -39,9 +38,7 @@ angular.module('resumeApp')
                     try {
                         $document[0].execCommand('copy');
                     } catch (err) {
-                        alert('please press Ctrl/Cmd+C to copy');
+                        //alert('please press Ctrl/Cmd+C to copy');
                     }
                 };
-                 }
-                ]
-               );
+            }]);

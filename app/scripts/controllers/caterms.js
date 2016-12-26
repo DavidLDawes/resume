@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name resumeApp.controller:CatermsCtrl
@@ -7,11 +5,8 @@
  * # CatermsCtrl
  * Controller of the resumeApp
  */
+/*global angular */
 angular.module('resumeApp')
-  .controller('CatermsCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('CatermsCtrl', function () {
+        'use strict';
+    });

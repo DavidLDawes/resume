@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name resumeApp.controller:TermsCtrl
@@ -7,6 +5,8 @@
  * # TermsCtrl
  * Controller of the resumeApp
  */
+/*global angular */
 angular.module('resumeApp')
-  .controller('TermsCtrl', function () {
-  });
+    .controller('TermsCtrl', function () {
+        'use strict';
+    });

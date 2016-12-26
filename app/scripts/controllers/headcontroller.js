@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name resumeApp.controller:HeadcontrollerCtrl
@@ -7,10 +5,12 @@
  * # HeadcontrollerCtrl
  * Controller of the resumeApp
  */
+/*global angular */
 angular.module('resumeApp')
-  .controller('HeadcontrollerCtrl', ['$scope', 'personal', function ($scope, personal) {
-    $scope.name = personal.name;
-      return {
-          'name': personal.name
-      };
-  }]);
+    .controller('HeadcontrollerCtrl', ['$scope', 'personal', function ($scope, personal) {
+        'use strict';
+        $scope.name = personal.name;
+        return {
+            'name': personal.name
+        };
+    }]);
