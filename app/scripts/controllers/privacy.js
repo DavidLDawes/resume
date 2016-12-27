@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name resumeApp.controller:PrivacyCtrl
@@ -7,6 +5,9 @@
  * # PrivacyCtrl
  * Controller of the resumeApp
  */
+/*jslint node: true */
+/*global angular */
 angular.module('resumeApp')
-  .controller('PrivacyCtrl', function () {
-  });
+    .controller('PrivacyCtrl', function () {
+        'use strict';
+    });

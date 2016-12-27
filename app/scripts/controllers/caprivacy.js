@@ -1,5 +1,3 @@
-'use strict';
-
 /**
  * @ngdoc function
  * @name resumeApp.controller:CaprivacyCtrl
@@ -7,11 +5,8 @@
  * # CaprivacyCtrl
  * Controller of the resumeApp
  */
+/*global angular */
 angular.module('resumeApp')
-  .controller('CaprivacyCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+    .controller('CaprivacyCtrl', function () {
+        'use strict';
+    });
