@@ -10,7 +10,6 @@
 angular.module('resumeApp')
     .controller('MainCtrl', ['$document', '$scope', '$location', 'ngDialog', 'links', function ($document, $scope, $location, ngDialog, links) {
         'use strict';
-        $document[0].title = '3D Galaxy Simulation with zoom, 200Bn stars, 180,000x120,000x40,000 light years';
         $scope.selectlink = links.links[links.indexFromView('Main')];
         $scope.links = links.links;
         $scope.go = function (link) {
