@@ -1,4 +1,3 @@
-/*jslint node: true */
 /**
  * @ngdoc overview
  * @name resumeApp
@@ -7,6 +6,7 @@
  *
  * Main module of the application.
  */
+/*jslint node: true */
 /*global angular */
 angular
     .module('resumeApp', [

@@ -45,15 +45,15 @@ angular.module('resumeApp')
             case 7:
             case '7':
                 $scope.xmin = 0;
-                $scope.xmax = drawstars.constantsants.xadjust;
+                $scope.xmax = drawstars.constants.xadjust;
                 $scope.ymin = 0;
-                $scope.ymax = drawstars.constantsants.yadjust;
+                $scope.ymax = drawstars.constants.yadjust;
                 break;
             default:
                 $scope.xmin = 0;
-                $scope.xmax = drawstars.constantsants.xadjust;
+                $scope.xmax = drawstars.constants.xadjust;
                 $scope.ymin = 0;
-                $scope.ymax = drawstars.constantsants.yadjust;
+                $scope.ymax = drawstars.constants.yadjust;
                 break;
             }
             $scope.stars = sector.starclass;
@@ -86,9 +86,9 @@ angular.module('resumeApp')
 
         // based on zoom, use full sector
         $scope.xmin = 0;
-        $scope.xmax = drawstars.constantsants.xadjust;
+        $scope.xmax = drawstars.constants.xadjust;
         $scope.ymin = 0;
-        $scope.ymax = drawstars.constantsants.yadjust;
+        $scope.ymax = drawstars.constants.yadjust;
 
         $scope.lastSectorX = -123454321;
         $scope.lastSectorY = -12345432971;
@@ -110,8 +110,8 @@ angular.module('resumeApp')
         // filtered counts (ZHi and ZLo, zoom soon) passed back to us using this
         $scope.zcounts = [0, 0, 0, 0, 0, 0, 0];
 
-        $scope.xinc = drawstars.constantsants.xadjust;
-        $scope.yinc = drawstars.constantsants.yadjust;
+        $scope.xinc = drawstars.constants.xadjust;
+        $scope.yinc = drawstars.constants.yadjust;
         $scope.zinc = drawstars.constants.zadjust;
 
         // motion buttons (left & right for x, up & down for y, in and out for z) are handled here

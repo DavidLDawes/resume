@@ -49,10 +49,20 @@ angular.module('resumeApp')
                 canvas.ctxt.height = canvasHeight;
             }
 
-            canvas.ctxt.elementid = $document[0].getElementById(canvasID);
-            if (isGood(canvas.ctxt.elementid)) {canvas.ctxt.context = canvas.ctxt.elementid.getContext("2d"); }
+            canvas.ctxt.elementid = $document[0].getElementById(canvas.ctxt.canvasID);
+            if (isGood(canvas.ctxt.elementid)) {
+                canvas.ctxt.context = canvas.ctxt.elementid.getContext("2d");
+            }
         };
-
+        
+        canvas.check = function () {
+            if (isBad(canvas.ctxt.elementid)) {
+                canvas.ctxt.elementid = $document[0].getElementById(canvas.ctxt.canvasID);
+                if (isGood(canvas.ctxt.elementid)) {
+                    canvas.ctxt.context = canvas.ctxt.elementid.getContext("2d");
+                }
+            }
+        };
 
         canvas.addSprites = function (id, simage, xcount, ycount, xpixels, ypixels) {
             canvas.sprites.push({

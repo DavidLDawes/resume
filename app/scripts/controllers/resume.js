@@ -9,8 +9,8 @@
  */
 angular.module('resumeApp')
     .controller('ResumeCtrl',
-                ['$scope', '$location', '$document', 'links', 'personal', 'HeadcontrollerCtrl',
-                 function ($scope, $location, $document, links, personal, HeadcontrollerCtrl) {
+                ['$scope', '$location', '$document', 'links', 'personal',
+                 function ($scope, $location, $document, links, personal) {
                 'use strict';
                 $document[0].title = 'Experimental version of {{personal.name}}\' resume with Angular check boxes controlling bits of the text.';
 
