@@ -51,7 +51,7 @@ angular.module('resumeApp')
             h = _x86Multiply(h, 0xc2b2ae35);
             h ^= h >>> 16;
 
-            re  turn h;
+            return h;
         }
 
 
