@@ -11,10 +11,10 @@ npm
 
 ## Node packages
 Currently I get some older stuff when I install, so I do the npm install then an npm update:
-'''
+```
 npm install grunt angular gulp bower -g
 npm update
-'''
+```
 
 When I do the npm update on Windows I have to run the Node.js command prompt as administrator.
 
