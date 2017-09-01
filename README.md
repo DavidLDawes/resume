@@ -11,8 +11,10 @@ npm
 
 ## Node packages
 Currently I get some older stuff when I install, so I do the npm install then an npm update:
-    npm install grunt angular gulp bower -g
-    npm update
+'''
+npm install grunt angular gulp bower -g
+npm update
+'''
 
 When I do the npm update on Windows I have to run the Node.js command prompt as administrator.
 
@@ -35,14 +37,15 @@ Change to the directory that you want to install the code into and clone the cod
 If you added an SSH key to your github account use the SSH clone string, otherwise 
 use the HTTP version, both are availbale via the "Clone or Download" button. 
 
-####SSH clone
+### SSH clone
 ```
 git clone git@github.com:DavidLDawes/resume.git
 ```
-####HTTPS clone
+### HTTPS clone
 ```
 git clone https://github.com/DavidLDawes/resume.git
 ```
+
 ## Building
 Now that the code is in place and the prerequisites are in place, 
 it's time to install and build the app. Change into the resume directory that
@@ -53,7 +56,7 @@ npm install
 bower install
 npm update
 bower update
-'''
+```
 
 At this point things are ready for the grunt system to do the various build, 
 test and serve tasks.
@@ -71,32 +74,42 @@ assume installing other components got us to our current (somewhat out of date) 
 
 My jshint was out of date too:
     
-    npm install jshint@latest -g
+```
+npm install jshint@latest -g
+```
 
-#####Steps taken on a Windows PC based on [issue #2:](https://github.com/DavidLDawes/resume/issues/2)
+### Issue #2
+Steps taken on a Windows PC based on [issue #2:](https://github.com/DavidLDawes/resume/issues/2)
 Update minimatch to avoid RegExp denial of service:
     
-    npm install minimatch@latest
+```
+npm install minimatch@latest
+```
 
 Update graceful-fs to avoid failing on certain node versions
     
-    npm install graceful-fs@latest -g
+```
+npm install graceful-fs@latest -g
+```
 
 There is a WARN about node-uuid beibng deprecated. I couldn't seem to find it to remove it, but
 I installed uuid anyway:
-    npm install uuid@latest
-    
+```
+npm install uuid@latest
+```
+
 On different systems I had slightly different problems with older versions, so as I say I assume
 it is affected by what you have already loaded.
 
 ## Build: grunt
 We use grunt to build, test and serve. 
 
-    grunt
-    grunt test
-    grunt serve
-    grunt clean test serve
+```
+grunt
+grunt test
+grunt serve
+grunt clean test serve
+```
 
 The serve version brings up the browser and auto-rebuilds & re-loads when you change
  source files.
- 
