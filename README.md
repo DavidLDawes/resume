@@ -36,18 +36,24 @@ If you added an SSH key to your github account use the SSH clone string, otherwi
 use the HTTP version, both are availbale via the "Clone or Download" button. 
 
 ####SSH clone
+```
 git clone git@github.com:DavidLDawes/resume.git
+```
 ####HTTPS clone
+```
 git clone https://github.com/DavidLDawes/resume.git
+```
 ## Building
 Now that the code is in place and the prerequisites are in place, 
 it's time to install and build the app. Change into the resume directory that
 the git clone command created and
 
-    npm install
-    bower install
-    npm update
-    bower update
+```
+npm install
+bower install
+npm update
+bower update
+'''
 
 At this point things are ready for the grunt system to do the various build, 
 test and serve tasks.
